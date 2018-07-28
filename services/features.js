@@ -1,10 +1,10 @@
-var Component = require('../models/component');
+var Feature = require('../models/feature');
 var errorHandler = require('../handlers/errors');
 
-var ComponentService = {
-    getAll: (req, res) => Component.find({})
+var FeatureService = {
+    getAll: (req, res) => Feature.find({})
         .then((docs) => res.json(docs))
         .catch((err) => errorHandler.handleDbError(err, res)),
 };
 
-module.exports = ComponentService;
+module.exports = FeatureService;

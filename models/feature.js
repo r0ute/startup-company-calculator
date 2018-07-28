@@ -1,19 +1,19 @@
-import mongoose from 'mongoose';
+var mongoose = require('mongoose');
 
-
-const componentCostSchema = new mongoose.Schema({
+var componentCostSchema = new mongoose.Schema({
     component_id: mongoose.Schema.ObjectId,
     count: Number,
 });
 
-const moduleCostSchema = new mongoose.Schema({
+var moduleCostSchema = new mongoose.Schema({
     module_id: mongoose.Schema.ObjectId,
     count: Number,
 });
 
-
-export const Feature = mongoose.model('Feature', new mongoose.Schema({
+var Feature = mongoose.model('Feature', new mongoose.Schema({
     name: String,
     componentCosts: [componentCostSchema],
     moduleCosts: [moduleCostSchema]
 }));
+
+module.exports = Feature;

@@ -1,6 +1,8 @@
-import mongoose from 'mongoose';
+var mongoose = require('mongoose');
 
-export const Module = mongoose.model('Module', new mongoose.Schema({
+var Module = mongoose.model('Module', new mongoose.Schema({
     modules: [mongoose.Schema.ObjectId],
     components: [mongoose.Schema.ObjectId],
 }));
+
+module.exports = Module;
