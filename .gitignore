@@ -1,5 +1,6 @@
 .idea/
 node_modules/
+config/db-override.json
 
 client/node_modules/
 client/build/
