@@ -1,4 +1,7 @@
 {
   "verbose": true,
-  "ignore": ["client/*"]
+  "ignore": ["client/*"],
+  "env": {
+    "PORT": 3001
+  }
 }
