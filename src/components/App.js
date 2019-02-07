@@ -1,23 +1,44 @@
-import React, {Component} from 'react';
-import './App.css';
-import {Components} from "../data/Components";
+import React, {Component, Fragment} from 'react';
+import PropTypes from 'prop-types';
+import {CssBaseline, withStyles} from '@material-ui/core';
+import SelectFeature from "./SelectFeature";
 
 class App extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            selectedFeatures: [],
+        }
+    }
+
+
     render() {
+        const {classes} = this.props;
+        const {selectedFeatures} = this.state;
+
         return (
-            <div className="App">
-                <header className="App-header">
-                    {Components.map(component => (
-                        <div key={component.name}>
-                            {component.name}
-                            <img className="App-component-icon" src={require(`../assets/${component.icon}`)}/>
-                        </div>
-                    ))}
-                </header>
-            </div>
+            <Fragment>
+                <CssBaseline/>
+
+                <main className={classes.main}>
+                    <SelectFeature selectedFeatures={selectedFeatures}/>
+
+                </main>
+            </Fragment>
         );
     }
 }
 
-export default App;
+App.propTypes = {
+    classes: PropTypes.object.isRequired
+};
+
+const styles = theme => ({
+    main: {
+        margin: theme.spacing.unit * 2,
+    }
+});
+
+export default withStyles(styles)(App);
