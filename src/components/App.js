@@ -13,6 +13,13 @@ class App extends Component {
         }
     }
 
+    handleFeatureChange = (features) => {
+        this.setState({
+            selectedFeatures: features,
+        });
+
+    };
+
 
     render() {
         const {classes} = this.props;
@@ -23,7 +30,10 @@ class App extends Component {
                 <CssBaseline/>
 
                 <main className={classes.main}>
-                    <SelectFeature selectedFeatures={selectedFeatures}/>
+                    <SelectFeature
+                        selectedFeatures={selectedFeatures}
+                        onChange={this.handleFeatureChange}
+                    />
 
                 </main>
             </Fragment>
