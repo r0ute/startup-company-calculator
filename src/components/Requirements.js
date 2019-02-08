@@ -42,7 +42,8 @@ class Requirements extends Component {
                                         <TableCell>
                                             <Chip
                                                 avatar={<Avatar><img className={classes.icon}
-                                                                     src={require(`../assets/${requirement.component.icon}`)}/></Avatar>}
+                                                                     src={require(`../assets/${requirement.component.icon}`)}
+                                                                     alt={requirement.component.name}/></Avatar>}
                                                 label={requirement.component.name}
                                                 className={classes.chip}
                                             />
@@ -70,8 +71,8 @@ const styles = (theme) => ({
         overflowX: 'auto',
     },
     icon: {
-        width: theme.spacing.unit * 4,
-        height: theme.spacing.unit * 4,
+        width: theme.spacing.unit * 3,
+        height: theme.spacing.unit * 3,
     },
     chip: {
         margin: theme.spacing.unit,
