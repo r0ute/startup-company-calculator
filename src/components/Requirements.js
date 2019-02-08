@@ -1,6 +1,8 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Avatar, Chip, Paper, Table, TableBody, TableCell, TableHead, TableRow, withStyles} from '@material-ui/core';
+import {Paper, Table, TableBody, TableCell, TableHead, TableRow, withStyles} from '@material-ui/core';
+import ComponentChip from "./ComponentChip";
+import Enums from "../models/Enums";
 
 class Requirements extends Component {
 
@@ -11,7 +13,17 @@ class Requirements extends Component {
             arr.push(requirements[requirement]);
         }
 
-        return arr;
+        return arr.sort((left, right) => {
+            if (left.component.type === right.component.type) {
+                return left.component.name.localeCompare(right.component.name)
+            } else if (left.component.type === Enums.ComponentTypes.Module) {
+                return -1;
+            } else if (right.component.type === Enums.ComponentTypes.Module) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
     };
 
 
@@ -25,37 +37,29 @@ class Requirements extends Component {
         }
 
         return (
-            <Fragment>
-                <Paper className={classes.root}>
-                    <Table className={classes.table}>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Component</TableCell>
-                                <TableCell align="right">Count</TableCell>
-                                <TableCell align="right">Produce Hours</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {renderedRequirements
-                                .map(requirement => (
-                                    <TableRow key={requirement.component.name}>
-                                        <TableCell>
-                                            <Chip
-                                                avatar={<Avatar><img className={classes.icon}
-                                                                     src={require(`../assets/${requirement.component.icon}`)}
-                                                                     alt={requirement.component.name}/></Avatar>}
-                                                label={requirement.component.name}
-                                                className={classes.chip}
-                                            />
-                                        </TableCell>
-                                        <TableCell align="right">{requirement.count}</TableCell>
-                                        <TableCell align="right">{requirement.component.produceHours}</TableCell>
-                                    </TableRow>
-                                ))}
-                        </TableBody>
-                    </Table>
-                </Paper>
-            </Fragment>
+            <Paper className={classes.root}>
+                <Table className={classes.table}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Component</TableCell>
+                            <TableCell align="right">Count</TableCell>
+                            <TableCell align="right">Produce Hours</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {renderedRequirements
+                            .map(requirement => (
+                                <TableRow key={requirement.component.name}>
+                                    <TableCell>
+                                        <ComponentChip requirement={requirement}/>
+                                    </TableCell>
+                                    <TableCell align="right">{requirement.count}</TableCell>
+                                    <TableCell align="right">{requirement.component.produceHours}</TableCell>
+                                </TableRow>
+                            ))}
+                    </TableBody>
+                </Table>
+            </Paper>
         );
     }
 }
@@ -69,10 +73,6 @@ const styles = (theme) => ({
         width: '100%',
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
-    },
-    icon: {
-        width: theme.spacing.unit * 3,
-        height: theme.spacing.unit * 3,
     },
     chip: {
         margin: theme.spacing.unit,

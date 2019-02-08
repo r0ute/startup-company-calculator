@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {Chip, MenuItem, Paper, TextField, Typography, withStyles} from '@material-ui/core';
 import Select from 'react-select';
 import {Features} from '../models/Features';
@@ -134,25 +134,23 @@ class SelectFeature extends Component {
         const {classes, selectedFeatures} = this.props;
 
         return (
-            <Fragment>
-                <Select
-                    classes={classes}
-                    components={components}
-                    textFieldProps={{
-                        InputLabelProps: {
-                            shrink: true,
-                        },
-                    }}
-                    options={this.allFeatures.filter(feature => !selectedFeatures.includes(feature))}
-                    value={selectedFeatures.map(feature => ({
-                        value: feature.name,
-                        label: feature.name,
-                    }))}
-                    onChange={this.handleFeatureChange}
-                    placeholder="Add Feature..."
-                    isMulti
-                />
-            </Fragment>
+            <Select
+                classes={classes}
+                components={components}
+                textFieldProps={{
+                    InputLabelProps: {
+                        shrink: true,
+                    },
+                }}
+                options={this.allFeatures.filter(feature => !selectedFeatures.includes(feature))}
+                value={selectedFeatures.map(feature => ({
+                    value: feature.name,
+                    label: feature.name,
+                }))}
+                onChange={this.handleFeatureChange}
+                placeholder="Add Feature..."
+                isMulti
+            />
         );
 
     }
