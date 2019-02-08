@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import {Paper, Table, TableBody, TableCell, TableHead, TableRow, withStyles} from '@material-ui/core';
 import ComponentChip from "./ComponentChip";
 import Enums from "../models/Enums";
+import moment from "moment";
+import momentDurationFormat from 'moment-duration-format';
+
+momentDurationFormat(moment);
 
 class Requirements extends Component {
 
@@ -42,8 +46,9 @@ class Requirements extends Component {
                     <TableHead>
                         <TableRow>
                             <TableCell>Component</TableCell>
+                            <TableCell>Created By</TableCell>
                             <TableCell align="right">Count</TableCell>
-                            <TableCell align="right">Produce Hours</TableCell>
+                            <TableCell align="right">Prod. Time</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -53,8 +58,10 @@ class Requirements extends Component {
                                     <TableCell>
                                         <ComponentChip requirement={requirement}/>
                                     </TableCell>
+                                    <TableCell>{`${requirement.component.employeeTypeName} (${requirement.component.employeeLevel})`} </TableCell>
                                     <TableCell align="right">{requirement.count}</TableCell>
-                                    <TableCell align="right">{requirement.component.produceHours}</TableCell>
+                                    <TableCell
+                                        align="right">{moment.duration(requirement.component.produceHours, 'hours').format('D[d] h[h]')}</TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>
