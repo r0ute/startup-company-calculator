@@ -1,8 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {CssBaseline, withStyles, AppBar, Typography, Toolbar} from '@material-ui/core';
-import {Money as ComputerIcon} from '@material-ui/icons';
+import {AppBar, CssBaseline, Toolbar, Typography, withStyles} from '@material-ui/core';
+import {MoneyOff as AppIcon} from '@material-ui/icons';
 import SelectFeature from "./SelectFeature";
+import Requirements from "./Requirements";
+import RequirementsUtils from '../utils/RequirementsUtils';
 
 class App extends Component {
 
@@ -11,20 +13,20 @@ class App extends Component {
 
         this.state = {
             selectedFeatures: [],
+            requirements: {},
         }
     }
 
     handleFeatureChange = (features) => {
         this.setState({
             selectedFeatures: features,
+            requirements: RequirementsUtils.getFromFeatures(features),
         });
-
     };
-
 
     render() {
         const {classes} = this.props;
-        const {selectedFeatures} = this.state;
+        const {selectedFeatures, requirements} = this.state;
 
         return (
             <Fragment>
@@ -32,7 +34,7 @@ class App extends Component {
 
                 <AppBar position="static" className={classes.appBar}>
                     <Toolbar>
-                        <ComputerIcon className={classes.icon} />
+                        <AppIcon className={classes.icon}/>
                         <Typography variant="h6" color="inherit" noWrap>
                             Startup Company Calculator
                         </Typography>
@@ -45,6 +47,9 @@ class App extends Component {
                         onChange={this.handleFeatureChange}
                     />
 
+                    <Requirements
+                        requirements={requirements}
+                    />
                 </main>
             </Fragment>
         );

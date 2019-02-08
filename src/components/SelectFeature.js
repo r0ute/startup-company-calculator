@@ -5,6 +5,7 @@ import {Features} from '../models/Features';
 import PropTypes from 'prop-types';
 import {emphasize} from '@material-ui/core/styles/colorManipulator';
 import classNames from 'classnames';
+import Enums from "../models/Enums";
 
 const NoOptionsMessage = (props) => {
     return (
@@ -115,10 +116,11 @@ const components = {
 
 class SelectFeature extends Component {
 
-    allFeatures = Features.map(feature => ({
-        value: feature.name,
-        label: feature.name,
-    })).sort((left, right) => left.label.localeCompare(right.label));
+    allFeatures = Features.filter(feature => feature.type === Enums.FeatureTypes.Users)
+        .map(feature => ({
+            value: feature.name,
+            label: feature.name,
+        })).sort((left, right) => left.label.localeCompare(right.label));
 
     handleFeatureChange = (option) => {
         const {onChange} = this.props;
