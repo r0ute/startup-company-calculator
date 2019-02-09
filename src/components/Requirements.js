@@ -60,26 +60,21 @@ class Requirements extends Component {
     };
 
     computeGcd = (costs) => {
-        const costArray = Object.keys(costs)
-            .map(key => costs[key]);
-
-        if (!costArray.length) {
-            return;
-        }
-
-        return gcd(...costArray);
+        return gcd(...Object.keys(costs)
+            .map(key => costs[key]));
     };
 
     render() {
         const {requirements, classes} = this.props;
 
         const renderedRequirements = this.mapRequirements(requirements);
-        const devCosts = this.getDevCosts(requirements);
-        const costsGcd = this.computeGcd(devCosts);
 
         if (!renderedRequirements.length) {
             return '';
         }
+
+        const devCosts = this.getDevCosts(requirements);
+        const costsGcd = this.computeGcd(devCosts);
 
         return (
             <Paper className={classes.root}>
