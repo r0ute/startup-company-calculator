@@ -15,7 +15,6 @@ import {
 } from '@material-ui/core';
 import {Help as HelpIcon} from '@material-ui/icons';
 import ComponentChip from "./ComponentChip";
-import Enums from "../models/Enums";
 import moment from "moment";
 import momentDurationFormat from 'moment-duration-format';
 import gcd from 'compute-gcd';
@@ -31,15 +30,8 @@ class Requirements extends Component {
     };
 
     sortComponents = (left, right) => {
-        if (left.component.type === right.component.type) {
-            return left.component.name.localeCompare(right.component.name)
-        } else if (left.component.type === Enums.ComponentTypes.Module) {
-            return -1;
-        } else if (right.component.type === Enums.ComponentTypes.Module) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return left.component.employeeTypeName.localeCompare(right.component.employeeTypeName)
+            || left.component.name.localeCompare(right.component.name);
     };
 
     getDevCosts = (requirements) => {
