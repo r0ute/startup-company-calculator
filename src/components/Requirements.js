@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Paper, Table, TableBody, TableCell, TableHead, TableRow, withStyles} from '@material-ui/core';
+import {Grid, Paper, Table, TableBody, TableCell, TableHead, TableRow, Tooltip, withStyles} from '@material-ui/core';
+import {Help as HelpIcon} from '@material-ui/icons';
 import ComponentChip from "./ComponentChip";
 import Enums from "../models/Enums";
 import moment from "moment";
@@ -30,7 +31,6 @@ class Requirements extends Component {
         });
     };
 
-
     render() {
         const {requirements, classes} = this.props;
 
@@ -48,7 +48,19 @@ class Requirements extends Component {
                             <TableCell>Component</TableCell>
                             <TableCell>Created By</TableCell>
                             <TableCell align="right">Count</TableCell>
-                            <TableCell align="right">Prod. Time</TableCell>
+                            <TableCell align="right">
+                                <Grid container alignItems="center" justify="flex-end">
+                                    <Grid item>
+                                        Prod. Time
+                                    </Grid>
+                                    <Grid item>
+                                        <Tooltip title="How much time it takes to produce 1 unit">
+                                            <HelpIcon fontSize="small"/>
+                                        </Tooltip>
+                                    </Grid>
+                                </Grid>
+
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
