@@ -92,7 +92,7 @@ const MultiValue = (props) => {
             onDelete={props.removeProps.onClick}
         />
     );
-}
+};
 
 const Menu = (props) => {
     return (
@@ -100,7 +100,7 @@ const Menu = (props) => {
             {props.children}
         </Paper>
     );
-}
+};
 
 const components = {
     Control,

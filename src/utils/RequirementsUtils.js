@@ -14,25 +14,25 @@ class RequirementsUtils {
         let produceHours = 0;
 
         Object.keys(componentRequirements)
-            .forEach(requirement => {
-                const component = Components.find(component => component.name === requirement);
+            .forEach(key => {
+                const component = Components.find(component => component.name === key);
 
-                if (allRequirements[requirement]) {
-                    allRequirements[requirement].count = allRequirements[requirement].count + 1;
+                if (allRequirements[key]) {
+                    allRequirements[key].count = allRequirements[key].count + 1;
                 } else {
-                    allRequirements[requirement] = {
+                    allRequirements[key] = {
                         component,
                         count: 1,
                     }
                 }
 
                 if (component.requirements) {
-                    allRequirements[requirement].produceHours = RequirementsUtils.getComponentRequirements(component.requirements, allRequirements)
+                    allRequirements[key].produceHours = RequirementsUtils.getComponentRequirements(component.requirements, allRequirements)
                 } else {
-                    allRequirements[requirement].produceHours = component.produceHours;
+                    allRequirements[key].produceHours = component.produceHours;
                 }
 
-                produceHours += allRequirements[requirement].produceHours;
+                produceHours += allRequirements[key].produceHours;
             });
 
         return produceHours;
