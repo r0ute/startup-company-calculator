@@ -12,23 +12,21 @@ momentDurationFormat(moment);
 class Requirements extends Component {
 
     mapRequirements = (requirements) => {
-        const arr = [];
+        return Object.keys(requirements)
+            .map(requirement => requirements[requirement])
+            .sort(this.sortComponents);
+    };
 
-        for (const requirement in requirements) {
-            arr.push(requirements[requirement]);
+    sortComponents = (left, right) => {
+        if (left.component.type === right.component.type) {
+            return left.component.name.localeCompare(right.component.name)
+        } else if (left.component.type === Enums.ComponentTypes.Module) {
+            return -1;
+        } else if (right.component.type === Enums.ComponentTypes.Module) {
+            return 1;
+        } else {
+            return 0;
         }
-
-        return arr.sort((left, right) => {
-            if (left.component.type === right.component.type) {
-                return left.component.name.localeCompare(right.component.name)
-            } else if (left.component.type === Enums.ComponentTypes.Module) {
-                return -1;
-            } else if (right.component.type === Enums.ComponentTypes.Module) {
-                return 1;
-            } else {
-                return 0;
-            }
-        });
     };
 
     render() {
