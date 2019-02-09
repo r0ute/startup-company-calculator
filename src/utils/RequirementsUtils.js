@@ -11,6 +11,8 @@ class RequirementsUtils {
     };
 
     static getComponentRequirements(componentRequirements, allRequirements) {
+        let produceHours = 0;
+
         Object.keys(componentRequirements)
             .forEach(requirement => {
                 const component = Components.find(component => component.name === requirement);
@@ -25,9 +27,15 @@ class RequirementsUtils {
                 }
 
                 if (component.requirements) {
-                    RequirementsUtils.getComponentRequirements(component.requirements, allRequirements)
+                    allRequirements[requirement].produceHours = RequirementsUtils.getComponentRequirements(component.requirements, allRequirements)
+                } else {
+                    allRequirements[requirement].produceHours = component.produceHours;
                 }
+
+                produceHours += allRequirements[requirement].produceHours;
             });
+
+        return produceHours;
     }
 }
 

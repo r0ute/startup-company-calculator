@@ -71,7 +71,7 @@ class Requirements extends Component {
                                     <TableCell>{`${requirement.component.employeeTypeName} (${requirement.component.employeeLevel})`} </TableCell>
                                     <TableCell align="right">{requirement.count}</TableCell>
                                     <TableCell
-                                        align="right">{moment.duration(requirement.component.produceHours, 'hours').format('D[d] h[h]')}</TableCell>
+                                        align="right">{moment.duration(requirement.produceHours, 'hours').format('D[d] h[h]')}</TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>
