@@ -116,7 +116,7 @@ const components = {
 
 class SelectFeature extends Component {
 
-    allFeatures = Features.filter(feature => feature.type === Enums.FeatureTypes.Users)
+    allFeatures = Features.filter(feature => [Enums.FeatureCategories.Users, Enums.FeatureCategories.Enhancement].includes(feature.categoryName))
         .map(feature => ({
             value: feature.name,
             label: feature.name,

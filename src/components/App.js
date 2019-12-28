@@ -5,6 +5,7 @@ import {MoneyOff as AppIcon} from '@material-ui/icons';
 import SelectFeature from "./SelectFeature";
 import Requirements from "./Requirements";
 import RequirementsUtils from '../utils/RequirementsUtils';
+import Configuration from '../models/Configuration';
 
 class App extends Component {
 
@@ -35,9 +36,14 @@ class App extends Component {
                 <AppBar position="static" className={classes.appBar}>
                     <Toolbar>
                         <AppIcon className={classes.icon}/>
-                        <Typography variant="h6" color="inherit" noWrap>
-                            Startup Company Calculator
+                        <Typography variant="h6" className={classes.title} noWrap>
+                            Startup Company Calculator 
                         </Typography>
+                        <div className={classes.version}>
+                            <Typography color='inherit'>
+                                Game Version: {Configuration.BETA_VERSION}.{Configuration.BETA_SUBVERSION}
+                            </Typography>
+                        </div>
                     </Toolbar>
                 </AppBar>
 
@@ -66,6 +72,24 @@ const styles = theme => ({
     },
     icon: {
         marginRight: theme.spacing.unit * 2,
+    },
+    title: {
+        color: 'inherit',
+        flexGrow: 1,
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+          display: 'block',
+        },
+    },
+    version: {
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+          marginLeft: 1,
+          width: 'auto',
+        },
     },
     main: {
         margin: theme.spacing.unit * 2,

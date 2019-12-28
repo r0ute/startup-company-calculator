@@ -11,7 +11,8 @@ const Enums = {
         Marketer: "Marketer",
         Supporter: "Supporter",
         ChiefExecutiveOfficer: "ChiefExecutiveOfficer",
-        Recruiter: "Recruiter"
+        Recruiter: "Recruiter",
+        OutsourcingExecutive: "OutsourcingExecutive"
     },
     GameEvents: {
         WorkstationChange: "WorkstationChange",
@@ -27,7 +28,6 @@ const Enums = {
         SpeedChange: "SpeedChange",
         CandidateChange: "CandidateChange",
         OnNewHour: "OnNewHour",
-        MenuChange: "MenuChange",
         UiUpdate: "UiUpdate",
         MailChange: "MailChange",
         NotificationChange: "NotificationChange",
@@ -36,10 +36,23 @@ const Enums = {
         MilestoneTrigger: "MilestoneTrigger",
         RackChange: "RackChange",
         OnNewDay: "OnNewDay",
-        OnLoadGame: "OnLoadGame"
+        OnNewYear: "OnNewYear",
+        OnLoadGame: "OnLoadGame",
+        ControllerRuleTrigger: "ControllerRuleTrigger",
+        HelpTopicChange: "HelpTopicChange",
+        OutsourcingChange: "OutsourcingChange",
+        JitterChange: "JitterChange"
     },
-    EmployeeLevels: {Beginner: "Beginner", Intermediate: "Intermediate", Expert: "Expert"},
-    Priorities: {Low: "Low", Medium: "Medium", High: "High"},
+    EmployeeLevels: {
+        Beginner: "Beginner",
+        Intermediate: "Intermediate",
+        Expert: "Expert"
+    },
+    Priorities: {
+        Low: "Low",
+        Medium: "Medium",
+        High: "High"
+    },
     ContractStatuses: {
         NotSet: "NotSet",
         Declined: "Declined",
@@ -48,9 +61,20 @@ const Enums = {
         Lost: "Lost",
         Cancelled: "Cancelled"
     },
-    ContractTypes: {FixedPrice: "FixedPrice", LimitedRFQ: "LimitedRFQ"},
-    ComponentTypes: {Component: "Component", Module: "Module", Server: "Server"},
-    EmployeeTypeGroups: {Development: "Development", Sales: "Sales", Management: "Management"},
+    ContractTypes: {
+        FixedPrice: "FixedPrice",
+        LimitedRFQ: "LimitedRFQ"
+    },
+    ComponentTypes: {
+        Component: "Component",
+        Module: "Module",
+        Server: "Server"
+    },
+    EmployeeTypeGroups: {
+        Development: "Development",
+        Sales: "Sales",
+        Management: "Management"
+    },
     EmployeeStates: {
         SentHome: "SentHome",
         Sick: "Sick",
@@ -59,10 +83,25 @@ const Enums = {
         Awaiting: "Awaiting",
         Unassigned: "Unassigned"
     },
-    TaskStates: {Running: "Running", Stalled: "Stalled", Completed: "Completed", Stopped: "Stopped"},
-    NotificationTypes: {Info: "Info", Warning: "Warning"},
-    FeatureProperties: {Quality: "Quality", Efficiency: "Efficiency"},
-    ProductStates: {Stable: "Stable", Unstable: "Unstable", Critical: "Critical"},
+    TaskStates: {
+        Running: "Running",
+        Stalled: "Stalled",
+        Completed: "Completed",
+        Stopped: "Stopped"
+    },
+    NotificationTypes: {
+        Info: "Info",
+        Warning: "Warning"
+    },
+    FeatureProperties: {
+        Quality: "Quality",
+        Efficiency: "Efficiency"
+    },
+    ProductStates: {
+        Stable: "Stable",
+        Unstable: "Unstable",
+        Critical: "Critical"
+    },
     DemandTypes: {
         Benefit: "Benefit",
         Furniture: "Furniture",
@@ -70,16 +109,31 @@ const Enums = {
         DeskType: "DeskType",
         FireEmployee: "FireEmployee"
     },
-    Difficulties: {Easy: "Easy", Medium: "Medium", Hard: "Hard"},
-    BuildingType: {Office: "Office", Hosting: "Hosting"},
+    Difficulties: {
+        Easy: "Easy",
+        Medium: "Medium",
+        Hard: "Hard"
+    },
+    BuildingType: {
+        Office: "Office",
+        Hosting: "Hosting"
+    },
     RackDeviceState: {
         ReducedPerformance: "ReducedPerformance",
         OverheatProtection: "OverheatProtection",
         Running: "Running",
         NotConfigured: "NotConfigured"
     },
-    FeatureTypes: {Revenue: "Revenue", Users: "Users"},
-    PriceRanges: {Cheap: "Cheap", Moderate: "Moderate", Expensive: "Expensive"}
+    FeatureCategories: {
+        Revenue: "Revenue",
+        Users: "Users",
+        Enhancement: "Enhancement"
+    },
+    PriceRanges: {
+        Cheap: "Cheap",
+        Moderate: "Moderate",
+        Expensive: "Expensive"
+    }
 };
 
 export default Enums;
