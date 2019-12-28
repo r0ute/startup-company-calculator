@@ -10,7 +10,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 if (process.env.NODE_ENV !== 'development') {
-    console.debug = () => {}
+    console.info = () => {};
+    console.debug = () => {};
 }
 
 ReactDOM.render(<App/>, document.getElementById('root'));

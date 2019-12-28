@@ -45,17 +45,17 @@ describe('getting requirements', () => {
         expect(requirements).toEqual({
             [ComponentNames.BackendComponent]: {
                 component: Components.find(cmp => cmp.name === ComponentNames.BackendComponent),
-                count: 2,
+                count: 6,
                 produceHours: 4,
             },
             [ComponentNames.UiComponent]: {
                 component: Components.find(cmp => cmp.name === ComponentNames.UiComponent),
-                count: 1,
+                count: 3,
                 produceHours: 2,
             },
             [ComponentNames.NetworkComponent]: {
                 component: Components.find(cmp => cmp.name === ComponentNames.NetworkComponent),
-                count: 1,
+                count: 3,
                 produceHours: 6,
             },
             [ComponentNames.BackendModule]: {
