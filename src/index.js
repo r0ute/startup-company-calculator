@@ -9,6 +9,10 @@ if (process.env.NODE_ENV === 'production') {
     ReactGA.pageview(window.location.pathname + window.location.search);
 }
 
+if (process.env.NODE_ENV !== 'development') {
+    console.debug = () => {}
+}
+
 ReactDOM.render(<App/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

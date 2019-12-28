@@ -60,12 +60,12 @@ describe('getting requirements', () => {
             },
             [ComponentNames.BackendModule]: {
                 component: Components.find(cmp => cmp.name === ComponentNames.BackendModule),
-                count: 1,
+                count: 3,
                 produceHours: 10,
             },
             [ComponentNames.InputModule]: {
                 component: Components.find(cmp => cmp.name === ComponentNames.InputModule),
-                count: 1,
+                count: 3,
                 produceHours: 6,
             },
         })
