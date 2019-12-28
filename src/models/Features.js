@@ -222,4 +222,4 @@ Features = [{
     }
 }];
 
-export {AdsFeatureNames, FeatureCategories, Features};
+export {AdsFeatureNames, FeatureCategories, FeatureNames, Features};
