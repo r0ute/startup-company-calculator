@@ -1,6 +1,6 @@
 import Enums from './Enums';
 
-let FeatureNames = {
+const FeatureNames = {
     LandingPage: "LandingPage",
     LoginSystem: "LoginSystem",
     CommentFunctionality: "CommentFunctionality",
@@ -18,141 +18,208 @@ let FeatureNames = {
     Subscriptions: "Subscriptions",
     ItemListing: "ItemListing",
     OfflineContent: "OfflineContent",
-    LiveStreaming: "LiveStreaming"
-}, AdsFeatureNames = [FeatureNames.TextAds, FeatureNames.BannerAds, FeatureNames.VideoAds], Features = [{
-    name: FeatureNames.LandingPage,
-    requirements: {UiComponent: 1, BackendComponent: 1, BlueprintComponent: 1, GraphicsComponent: 1},
-    usersFactor: 200,
-    faIcon: "fa-paper-plane-o",
-    maxLevel: 4,
-    type: Enums.FeatureTypes.Users
+    LiveStreaming: "LiveStreaming",
+    AdBlockObfuscator: "AdBlockObfuscator",
+    DdosProtection: "DdosProtection"
+},
+AdsFeatureNames = [FeatureNames.TextAds, FeatureNames.BannerAds, FeatureNames.VideoAds],
+FeatureCategories = [{
+    name: Enums.FeatureCategories.Users,
+    title: "users_features",
+    description: "feature_type_users_description",
+    faIcon: "fa-users"
 }, {
-    name: FeatureNames.LoginSystem,
-    requirements: {FrontendModule: 1, InputModule: 1, BackendModule: 1, AuthenticationModule: 1},
-    faIcon: "fa-sign-in",
-    usersFactor: 200,
-    maxLevel: 5e3,
-    type: Enums.FeatureTypes.Users
+    name: Enums.FeatureCategories.Revenue,
+    title: "revenue_features",
+    description: "feature_type_revenue_description",
+    faIcon: "fa-money"
+}, {
+    name: Enums.FeatureCategories.Enhancement,
+    title: "enhancement_features",
+    description: "feature_type_enhancement_description",
+    faIcon: "fa-magic"
+}],
+Features = [{
+    name: FeatureNames.LandingPage,
+    level: Enums.EmployeeLevels.Beginner,
+    requirements: {
+        UiComponent: 1,
+        BackendComponent: 1,
+        BlueprintComponent: 1,
+        GraphicsComponent: 1
+    },
+    faIcon: "fa-paper-plane-o",
+    categoryName: Enums.FeatureCategories.Users
 }, {
     name: FeatureNames.CommentFunctionality,
-    requirements: {BackendModule: 2, InputModule: 2},
+    level: Enums.EmployeeLevels.Beginner,
+    requirements: {
+        BackendModule: 3,
+        InputModule: 3
+    },
     faIcon: "fa-commenting-o",
-    usersFactor: 320,
-    maxLevel: 5e3,
-    type: Enums.FeatureTypes.Users
+    categoryName: Enums.FeatureCategories.Users
 }, {
     name: FeatureNames.SharingFunctionality,
-    requirements: {BackendModule: 1, FrontendModule: 1, InputModule: 2},
+    level: Enums.EmployeeLevels.Intermediate,
+    requirements: {
+        BackendModule: 2,
+        FrontendModule: 1,
+        InputModule: 1,
+        EmailModule: 2,
+        UiSet: 1
+    },
     faIcon: "fa-share",
-    usersFactor: 160,
-    maxLevel: 5e3,
-    type: Enums.FeatureTypes.Users
+    categoryName: Enums.FeatureCategories.Users
 }, {
     name: FeatureNames.PaymentSystem,
-    requirements: {BackendModule: 2, PaymentGatewayModule: 1, EmailModule: 1},
+    level: Enums.EmployeeLevels.Expert,
+    requirements: {
+        DatabaseLayer: 2,
+        FrontendModule: 1,
+        PaymentGatewayModule: 1,
+        EmailModule: 1,
+        DesignGuidelines: 1
+    },
     faIcon: "fa-credit-card",
-    usersFactor: 200,
-    maxLevel: 5e3,
-    type: Enums.FeatureTypes.Users
+    categoryName: Enums.FeatureCategories.Users
 }, {
     name: FeatureNames.ImageUpload,
-    requirements: {InputModule: 1, StorageModule: 2, BackendModule: 1, FrontendModule: 1},
+    level: Enums.EmployeeLevels.Intermediate,
+    requirements: {
+        InputModule: 1,
+        StorageModule: 2,
+        DatabaseLayer: 2,
+        FrontendModule: 1,
+        UiSet: 1
+    },
     faIcon: "fa-picture-o",
-    usersFactor: 280,
-    maxLevel: 5e3,
-    type: Enums.FeatureTypes.Users
-}, {
-    name: FeatureNames.ContentManagementSystem,
-    requirements: {ContentManagementModule: 5, InputModule: 4},
-    faIcon: "fa-outdent",
-    usersFactor: 280,
-    maxLevel: 5e3,
-    type: Enums.FeatureTypes.Users
+    categoryName: Enums.FeatureCategories.Users
 }, {
     name: FeatureNames.ChatSystem,
-    requirements: {DatabaseLayer: 1, InputModule: 2, NotificationModule: 2, NetworkComponent: 3},
+    level: Enums.EmployeeLevels.Expert,
+    requirements: {
+        DatabaseLayer: 1,
+        InputModule: 1,
+        NotificationModule: 2,
+        NetworkComponent: 3,
+        ApiClientModule: 2,
+        DesignGuidelines: 1
+    },
     faIcon: "fa-comments-o",
-    usersFactor: 320,
-    maxLevel: 5e3,
-    type: Enums.FeatureTypes.Users
+    categoryName: Enums.FeatureCategories.Users
 }, {
     name: FeatureNames.VideoFunctionality,
-    requirements: {FrontendModule: 1, StorageModule: 1, NetworkComponent: 1},
+    level: Enums.EmployeeLevels.Beginner,
+    requirements: {
+        FrontendModule: 1,
+        VideoPlaybackModule: 1
+    },
     faIcon: "fa-video-o",
-    usersFactor: 320,
-    maxLevel: 5e3,
-    researchPoints: 20,
-    type: Enums.FeatureTypes.Users
+    categoryName: Enums.FeatureCategories.Users
 }, {
     name: FeatureNames.OfflineContent,
-    requirements: {FrontendModule: 1, DatabaseLayer: 1, StorageModule: 1, BandwidthCompressionModule: 1},
+    level: Enums.EmployeeLevels.Intermediate,
+    requirements: {
+        BackendModule: 2,
+        FrontendModule: 1,
+        StorageModule: 2,
+        DatabaseLayer: 2,
+        UiSet: 1
+    },
     faIcon: "fa-spinner",
-    usersFactor: 320,
-    maxLevel: 5e3,
-    type: Enums.FeatureTypes.Users
+    categoryName: Enums.FeatureCategories.Users
 }, {
     name: FeatureNames.LiveStreaming,
-    requirements: {FrontendModule: 1, VideoPlaybackModule: 1, BandwidthCompressionModule: 1},
+    level: Enums.EmployeeLevels.Beginner,
+    requirements: {
+        BackendModule: 1,
+        FrontendModule: 1,
+        NetworkComponent: 4
+    },
     faIcon: "fa-podcast",
-    usersFactor: 320,
-    maxLevel: 5e3,
-    type: Enums.FeatureTypes.Users
-}, {
-    name: FeatureNames.ImapService,
-    requirements: {DatabaseLayer: 4, AuthenticationModule: 3, FilesystemComponent: 1, EmailModule: 6},
-    faIcon: "fa-envelope-o",
-    usersFactor: 200,
-    maxLevel: 5e3,
-    type: Enums.FeatureTypes.Users
+    categoryName: Enums.FeatureCategories.Users
 }, {
     name: FeatureNames.VideoEditor,
+    level: Enums.EmployeeLevels.Intermediate,
     requirements: {
-        VideoPlaybackModule: 2,
+        VideoPlaybackModule: 1,
         StorageModule: 1,
-        BandwidthCompressionModule: 1,
-        InterfaceModule: 1,
-        BackendModule: 3
+        FrontendModule: 1,
+        BackendModule: 1,
+        UiSet: 1
     },
     faIcon: "fa-video-camera",
-    usersFactor: 200,
-    maxLevel: 5e3,
-    type: Enums.FeatureTypes.Users
+    categoryName: Enums.FeatureCategories.Users
 }, {
     name: FeatureNames.ItemListing,
-    requirements: {BackendModule: 2, InterfaceModule: 1},
+    level: Enums.EmployeeLevels.Beginner,
+    requirements: {
+        BackendModule: 1,
+        FrontendModule: 1,
+        ContentManagementModule: 1
+    },
     faIcon: "fa-file-text-o",
-    type: Enums.FeatureTypes.Users
+    categoryName: Enums.FeatureCategories.Users
 }, {
     name: FeatureNames.TextAds,
-    requirements: {BackendModule: 3, FrontendModule: 3, StorageModule: 3},
     faIcon: "fa-align-left",
-    satisfactionDecrease: 30,
-    type: Enums.FeatureTypes.Revenue
+    dissatisfaction: 8,
+    categoryName: Enums.FeatureCategories.Revenue
 }, {
     name: FeatureNames.BannerAds,
-    requirements: {BackendModule: 8, FrontendModule: 8, DatabaseLayer: 12, SeoModule: 8, StorageModule: 8},
     faIcon: "fa-picture-o",
-    satisfactionDecrease: 15,
-    type: Enums.FeatureTypes.Revenue
+    dissatisfaction: 12,
+    categoryName: Enums.FeatureCategories.Revenue
 }, {
     name: FeatureNames.VideoAds,
-    requirements: {
-        BackendModule: 16,
-        FrontendModule: 16,
-        DatabaseLayer: 24,
-        SeoModule: 24,
-        StorageModule: 38,
-        VideoPlaybackModule: 40
-    },
     faIcon: "fa-video-camera",
-    satisfactionDecrease: 5,
-    type: Enums.FeatureTypes.Revenue
+    dissatisfaction: 16,
+    categoryName: Enums.FeatureCategories.Revenue
 }, {
     name: FeatureNames.Subscriptions,
-    requirements: {BackendModule: 12, FrontendModule: 12, StorageModule: 20},
     faIcon: "fa-calendar-check-o",
-    type: Enums.FeatureTypes.Revenue,
+    categoryName: Enums.FeatureCategories.Revenue,
     orderOverride: 1
+}, {
+    name: FeatureNames.ContentManagementSystem,
+    requirements: {
+        ContentManagementModule: 5,
+        InputModule: 4
+    },
+    faIcon: "fa-outdent",
+    categoryName: Enums.FeatureCategories.Users
+}, {
+    name: FeatureNames.LoginSystem,
+    requirements: {
+        FrontendModule: 1,
+        InputModule: 1,
+        BackendModule: 1,
+        AuthenticationModule: 1
+    },
+    faIcon: "fa-sign-in",
+    categoryName: Enums.FeatureCategories.Users
+}, {
+    name: FeatureNames.AdBlockObfuscator,
+    faIcon: "fa-eye-slash",
+    categoryName: Enums.FeatureCategories.Enhancement,
+    requirements: {
+        CodeOptimizationModule: 2,
+        UiSet: 4,
+        ApiClientModule: 2,
+        ResearchPoint: 200
+    }
+}, {
+    name: FeatureNames.DdosProtection,
+    faIcon: "fa-shield",
+    categoryName: Enums.FeatureCategories.Enhancement,
+    requirements: {
+        CodeOptimizationModule: 1,
+        ApiClientModule: 2,
+        ResearchPoint: 200,
+        SwarmManagement: 1,
+        Firewall: 5
+    }
 }];
 
 export {AdsFeatureNames, FeatureNames, Features};

@@ -1,429 +1,552 @@
 import Enums from './Enums';
 
-let ComponentNames = {}, Components = [];
+const ComponentNames = {
+    BlueprintComponent: "BlueprintComponent",
+    WireframeComponent: "WireframeComponent",
+    GraphicsComponent: "GraphicsComponent",
+    DocumentationComponent: "DocumentationComponent",
+    UiComponent: "UiComponent",
+    BackendComponent: "BackendComponent",
+    DatabaseComponent: "DatabaseComponent",
+    NetworkComponent: "NetworkComponent",
+    EncryptionComponent: "EncryptionComponent",
+    SemanticComponent: "SemanticComponent",
+    SearchAlgorithmComponent: "SearchAlgorithmComponent",
+    SmtpComponent: "SmtpComponent",
+    I18nComponent: "I18nComponent",
+    VideoComponent: "VideoComponent",
+    FilesystemComponent: "FilesystemComponent",
+    CompressionComponent: "CompressionComponent",
+    VirtualHardware: "VirtualHardware",
+    Firewall: "Firewall",
+    OperatingSystem: "OperatingSystem",
+    ProcessManagement: "ProcessManagement",
+    ContinuousIntegration: "ContinuousIntegration",
+    CronJob: "CronJob",
+    Copywriting: "Copywriting",
+    TextFormat: "TextFormat",
+    VideoFormat: "VideoFormat",
+    ImageFormat: "ImageFormat",
+    AudioFormat: "AudioFormat",
+    ContractAgreement: "ContractAgreement",
+    Survey: "Survey",
+    UserFeedback: "UserFeedback",
+    PhoneInterview: "PhoneInterview",
+    AnalyticsResearch: "AnalyticsResearch",
+    BehaviorObservation: "BehaviorObservation",
+    AbTesting: "AbTesting",
+    ResearchPoint: "ResearchPoint"
+},
 
-ComponentNames.BlueprintComponent = "BlueprintComponent";
-ComponentNames.WireframeComponent = "WireframeComponent";
-ComponentNames.GraphicsComponent = "GraphicsComponent";
-ComponentNames.UiComponent = "UiComponent";
-ComponentNames.BackendComponent = "BackendComponent";
-ComponentNames.DatabaseComponent = "DatabaseComponent";
-ComponentNames.NetworkComponent = "NetworkComponent";
-ComponentNames.EncryptionComponent = "EncryptionComponent";
-ComponentNames.SemanticComponent = "SemanticComponent";
-ComponentNames.SearchAlgorithmComponent = "SearchAlgorithmComponent";
-ComponentNames.SmtpComponent = "SmtpComponent";
-ComponentNames.I18nComponent = "I18nComponent";
-ComponentNames.VideoComponent = "VideoComponent";
-ComponentNames.FilesystemComponent = "FilesystemComponent";
-ComponentNames.CompressionComponent = "CompressionComponent";
-ComponentNames.VirtualHardware = "VirtualHardware";
-ComponentNames.Firewall = "Firewall";
-ComponentNames.OperatingSystem = "OperatingSystem";
-ComponentNames.Copywriting = "Copywriting";
-ComponentNames.TextFormat = "TextFormat";
-ComponentNames.VideoFormat = "VideoFormat";
-ComponentNames.ImageFormat = "ImageFormat";
-ComponentNames.AudioFormat = "AudioFormat";
-ComponentNames.ContractAgreement = "ContractAgreement";
-ComponentNames.Survey = "Survey";
-ComponentNames.UserFeedback = "UserFeedback";
-ComponentNames.PhoneInterview = "PhoneInterview";
-ComponentNames.AnalyticsResearch = "AnalyticsResearch";
-ComponentNames.BehaviorObservation = "BehaviorObservation";
-ComponentNames.AbTesting = "AbTesting";
-Components.push({
+Components = [
+{
     name: ComponentNames.BlueprintComponent,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/blueprint.png",
     employeeTypeName: Enums.EmployeeTypeNames.Designer,
     type: Enums.ComponentTypes.Component,
     produceHours: 2
-});
-Components.push({
+}, {
     name: ComponentNames.WireframeComponent,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/wireframe.png",
     employeeTypeName: Enums.EmployeeTypeNames.Designer,
     type: Enums.ComponentTypes.Component,
     produceHours: 3
-});
-Components.push({
+}, {
     name: ComponentNames.GraphicsComponent,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/graphics.png",
     employeeTypeName: Enums.EmployeeTypeNames.Designer,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.UiComponent,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/ui.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 2
-});
-Components.push({
+}, {
     name: ComponentNames.BackendComponent,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/backend.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.NetworkComponent,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/network.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 6
-});
-Components.push({
+}, {
     name: ComponentNames.DatabaseComponent,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/database.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.SemanticComponent,
     employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/components/semantic.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 3
-});
-Components.push({
+}, {
     name: ComponentNames.EncryptionComponent,
-    employeeLevel: Enums.EmployeeLevels.Beginner,
+    employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/components/encryption.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 8
-});
-Components.push({
+}, {
     name: ComponentNames.FilesystemComponent,
-    employeeLevel: Enums.EmployeeLevels.Beginner,
+    employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/components/filesystem.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.VideoComponent,
-    employeeLevel: Enums.EmployeeLevels.Intermediate,
+    employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/video.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 14
-});
-Components.push({
+}, {
     name: ComponentNames.SmtpComponent,
     employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/components/smtp.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 8
-});
-Components.push({
+}, {
     name: ComponentNames.I18nComponent,
     employeeLevel: Enums.EmployeeLevels.Expert,
     icon: "images/icons/components/i18n.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.SearchAlgorithmComponent,
     employeeLevel: Enums.EmployeeLevels.Expert,
     icon: "images/icons/components/searchalgorithm.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 12
-});
-Components.push({
+}, {
     name: ComponentNames.CompressionComponent,
     employeeLevel: Enums.EmployeeLevels.Expert,
     icon: "images/icons/components/compression.png",
     employeeTypeName: Enums.EmployeeTypeNames.Developer,
     type: Enums.ComponentTypes.Component,
     produceHours: 8
-});
-Components.push({
+}, {
     name: ComponentNames.VirtualHardware,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/hardware.png",
     employeeTypeName: Enums.EmployeeTypeNames.SysAdmin,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.OperatingSystem,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/operatingsystem.png",
     employeeTypeName: Enums.EmployeeTypeNames.SysAdmin,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.Firewall,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/firewall.png",
     employeeTypeName: Enums.EmployeeTypeNames.SysAdmin,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.Copywriting,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/copywriting.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.TextFormat,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/textformat.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.ImageFormat,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/imageformat.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.VideoFormat,
     employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/components/videoformat.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 8
-});
-Components.push({
+}, {
     name: ComponentNames.AudioFormat,
     employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/components/audioformat.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 8
-});
-Components.push({
+}, {
     name: ComponentNames.ContractAgreement,
     employeeLevel: Enums.EmployeeLevels.Expert,
     icon: "images/icons/components/contractagreement.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 12
-});
-Components.push({
+}, {
     name: ComponentNames.Survey,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/survey.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 4
-});
-Components.push({
+}, {
     name: ComponentNames.UserFeedback,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/userfeedback.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 8
-});
-Components.push({
+}, {
     name: ComponentNames.PhoneInterview,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/components/phoneinterview.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 6
-});
-Components.push({
+}, {
     name: ComponentNames.AnalyticsResearch,
     employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/components/analyticsresearch.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 12
-});
-Components.push({
+}, {
     name: ComponentNames.BehaviorObservation,
     employeeLevel: Enums.EmployeeLevels.Expert,
     icon: "images/icons/components/behaviorobservation.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 12
-});
-Components.push({
+}, {
     name: ComponentNames.AbTesting,
     employeeLevel: Enums.EmployeeLevels.Expert,
     icon: "images/icons/components/abtesting.png",
     employeeTypeName: Enums.EmployeeTypeNames.Marketer,
     type: Enums.ComponentTypes.Component,
     produceHours: 10
-});
-ComponentNames.FrontendModule = "FrontendModule";
-ComponentNames.BackendModule = "BackendModule";
-ComponentNames.SeoModule = "SeoModule";
-ComponentNames.AuthenticationModule = "AuthenticationModule";
-ComponentNames.ContentManagementModule = "ContentManagementModule";
-ComponentNames.ApiClientModule = "ApiClientModule";
-ComponentNames.PaymentGatewayModule = "PaymentGatewayModule";
-ComponentNames.VideoPlaybackModule = "VideoPlaybackModule";
-ComponentNames.StorageModule = "StorageModule";
-ComponentNames.EmailModule = "EmailModule";
-ComponentNames.LocalizationModule = "LocalizationModule";
-ComponentNames.SearchModule = "SearchModule";
-ComponentNames.BandwidthCompressionModule = "BandwidthCompressionModule";
-ComponentNames.DatabaseLayer = "DatabaseLayer";
-ComponentNames.InputModule = "InputModule";
-ComponentNames.NotificationModule = "NotificationModule";
-ComponentNames.InterfaceModule = "InterfaceModule";
-Components.push({
+}, {
+    name: ComponentNames.DocumentationComponent,
+    employeeLevel: Enums.EmployeeLevels.Expert,
+    icon: "images/icons/components/documentation.png",
+    employeeTypeName: Enums.EmployeeTypeNames.Designer,
+    type: Enums.ComponentTypes.Component,
+    produceHours: 12
+}, {
+    name: ComponentNames.ProcessManagement,
+    employeeLevel: Enums.EmployeeLevels.Intermediate,
+    icon: "images/icons/components/processmanagement.png",
+    employeeTypeName: Enums.EmployeeTypeNames.SysAdmin,
+    type: Enums.ComponentTypes.Component,
+    produceHours: 6
+}, {
+    name: ComponentNames.ContinuousIntegration,
+    employeeLevel: Enums.EmployeeLevels.Intermediate,
+    icon: "images/icons/components/continuousintegration.png",
+    employeeTypeName: Enums.EmployeeTypeNames.SysAdmin,
+    type: Enums.ComponentTypes.Component,
+    produceHours: 8
+}, {
+    name: ComponentNames.CronJob,
+    employeeLevel: Enums.EmployeeLevels.Intermediate,
+    icon: "images/icons/components/cronjob.png",
+    employeeTypeName: Enums.EmployeeTypeNames.SysAdmin,
+    type: Enums.ComponentTypes.Component,
+    produceHours: 3
+}, {
+    name: ComponentNames.ResearchPoint,
+    employeeLevel: Enums.EmployeeLevels.Beginner,
+    icon: "images/icons/components/researchpoint.png",
+    employeeTypeName: Enums.EmployeeTypeNames.Researcher,
+    type: Enums.ComponentTypes.Component,
+    produceHours: 0
+}, ComponentNames.FrontendModule = "FrontendModule", ComponentNames.BackendModule = "BackendModule", ComponentNames.SeoModule = "SeoModule", ComponentNames.AuthenticationModule = "AuthenticationModule", ComponentNames.ContentManagementModule = "ContentManagementModule", ComponentNames.ApiClientModule = "ApiClientModule", ComponentNames.PaymentGatewayModule = "PaymentGatewayModule", ComponentNames.VideoPlaybackModule = "VideoPlaybackModule", ComponentNames.StorageModule = "StorageModule", ComponentNames.EmailModule = "EmailModule", ComponentNames.LocalizationModule = "LocalizationModule", ComponentNames.SearchModule = "SearchModule", ComponentNames.BandwidthCompressionModule = "BandwidthCompressionModule", ComponentNames.DatabaseLayer = "DatabaseLayer", ComponentNames.InputModule = "InputModule", ComponentNames.NotificationModule = "NotificationModule", ComponentNames.InterfaceModule = "InterfaceModule", ComponentNames.CodeOptimizationModule = "CodeOptimizationModule", ComponentNames.VirtualContainer = "VirtualContainer", ComponentNames.Cluster = "Cluster", ComponentNames.SwarmManagement = "SwarmManagement", ComponentNames.UiElement = "UiElement", ComponentNames.UiSet = "UiSet", ComponentNames.ResponsiveUi = "ResponsiveUi", ComponentNames.DesignGuidelines = "DesignGuidelines", {
     name: ComponentNames.InterfaceModule,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/modules/webdesign.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {BlueprintComponent: 1, WireframeComponent: 1, GraphicsComponent: 1}
-});
-Components.push({
+    requirements: {
+        UiElement: 2,
+        WireframeComponent: 1
+    }
+}, {
     name: ComponentNames.FrontendModule,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/modules/frontend.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {UiComponent: 1, InterfaceModule: 1}
-});
-Components.push({
+    requirements: {
+        UiElement: 1,
+        InterfaceModule: 1
+    }
+}, {
     name: ComponentNames.BackendModule,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/modules/backend.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {BackendComponent: 1, NetworkComponent: 1}
-});
-Components.push({
+    requirements: {
+        BackendComponent: 1,
+        NetworkComponent: 1
+    }
+}, {
     name: ComponentNames.InputModule,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/modules/input.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {UiComponent: 1, BackendComponent: 1}
-});
-Components.push({
+    requirements: {
+        UiComponent: 1,
+        BackendComponent: 1
+    }
+}, {
     name: ComponentNames.StorageModule,
     employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/modules/storage.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {FilesystemComponent: 1, BackendComponent: 1}
-});
-Components.push({
+    requirements: {
+        FilesystemComponent: 1,
+        BackendComponent: 1
+    }
+}, {
     name: ComponentNames.ContentManagementModule,
-    employeeLevel: Enums.EmployeeLevels.Intermediate,
+    employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/modules/contentmanagement.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {DatabaseComponent: 1, BackendModule: 1}
-});
-Components.push({
+    requirements: {
+        FrontendModule: 1,
+        InputModule: 1,
+        BackendModule: 1
+    }
+}, {
     name: ComponentNames.SeoModule,
     employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/modules/seo.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {FrontendModule: 1, SemanticComponent: 1}
-});
-Components.push({
+    requirements: {
+        FrontendModule: 1,
+        SemanticComponent: 1
+    }
+}, {
     name: ComponentNames.AuthenticationModule,
-    employeeLevel: Enums.EmployeeLevels.Beginner,
+    employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/modules/authentication.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {DatabaseComponent: 1, EncryptionComponent: 1, BackendModule: 1}
-});
-Components.push({
-    name: ComponentNames.ApiClientModule,
-    employeeLevel: Enums.EmployeeLevels.Intermediate,
-    icon: "images/icons/modules/apiclient.png",
-    type: Enums.ComponentTypes.Module,
-    employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {BackendModule: 1, NetworkComponent: 1}
-});
-Components.push({
+    requirements: {
+        DatabaseComponent: 1,
+        EncryptionComponent: 1,
+        BackendModule: 1
+    }
+}, {
     name: ComponentNames.PaymentGatewayModule,
     employeeLevel: Enums.EmployeeLevels.Expert,
     icon: "images/icons/modules/payment.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {BackendModule: 1, ApiClientModule: 1}
-});
-Components.push({
+    requirements: {
+        DatabaseLayer: 1,
+        ApiClientModule: 1,
+        AuthenticationModule: 1
+    }
+}, {
     name: ComponentNames.VideoPlaybackModule,
-    employeeLevel: Enums.EmployeeLevels.Intermediate,
+    employeeLevel: Enums.EmployeeLevels.Beginner,
     icon: "images/icons/modules/video.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {VideoComponent: 1, FrontendModule: 1, BackendModule: 1}
-});
-Components.push({
+    requirements: {
+        VideoComponent: 1,
+        FrontendModule: 1,
+        BackendModule: 1
+    }
+}, {
     name: ComponentNames.EmailModule,
     employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/modules/email.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {SmtpComponent: 1, BackendComponent: 1}
-});
-Components.push({
+    requirements: {
+        SmtpComponent: 1,
+        BackendComponent: 1
+    }
+}, {
     name: ComponentNames.LocalizationModule,
     employeeLevel: Enums.EmployeeLevels.Expert,
     icon: "images/icons/modules/localization.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {I18nComponent: 1, FrontendModule: 1}
-});
-Components.push({
+    requirements: {
+        I18nComponent: 1,
+        FrontendModule: 1
+    }
+}, {
     name: ComponentNames.SearchModule,
     employeeLevel: Enums.EmployeeLevels.Expert,
     icon: "images/icons/modules/search.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {DatabaseComponent: 1, SearchAlgorithmComponent: 1, BackendComponent: 1}
-});
-Components.push({
+    requirements: {
+        DatabaseComponent: 1,
+        SearchAlgorithmComponent: 1,
+        BackendComponent: 1
+    }
+}, {
     name: ComponentNames.BandwidthCompressionModule,
     employeeLevel: Enums.EmployeeLevels.Expert,
     icon: "images/icons/modules/compression.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {CompressionComponent: 1, NetworkComponent: 1, BackendComponent: 1}
-});
-Components.push({
+    requirements: {
+        CompressionComponent: 1,
+        NetworkComponent: 1,
+        BackendComponent: 1
+    }
+}, {
     name: ComponentNames.DatabaseLayer,
     employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/modules/datalayer.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {DatabaseComponent: 1, BackendComponent: 1, NetworkComponent: 1}
-});
-Components.push({
+    requirements: {
+        DatabaseComponent: 1,
+        BackendComponent: 1,
+        NetworkComponent: 1
+    }
+}, {
     name: ComponentNames.NotificationModule,
     employeeLevel: Enums.EmployeeLevels.Intermediate,
     icon: "images/icons/modules/notification.png",
     type: Enums.ComponentTypes.Module,
     employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
-    requirements: {UiComponent: 1, BackendComponent: 1, EmailModule: 1}
-});
+    requirements: {
+        UiComponent: 1,
+        BackendComponent: 1,
+        EmailModule: 1
+    }
+}, {
+    name: ComponentNames.ApiClientModule,
+    employeeLevel: Enums.EmployeeLevels.Expert,
+    icon: "images/icons/modules/apiclient.png",
+    type: Enums.ComponentTypes.Module,
+    employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
+    requirements: {
+        BackendModule: 1,
+        DatabaseLayer: 1,
+        CompressionComponent: 2
+    }
+}, {
+    name: ComponentNames.CodeOptimizationModule,
+    employeeLevel: Enums.EmployeeLevels.Expert,
+    icon: "images/icons/modules/codeoptimization.png",
+    type: Enums.ComponentTypes.Module,
+    employeeTypeName: Enums.EmployeeTypeNames.LeadDeveloper,
+    requirements: {
+        BackendModule: 2,
+        DatabaseLayer: 2,
+        FrontendModule: 2
+    }
+}, {
+    name: ComponentNames.UiElement,
+    employeeLevel: Enums.EmployeeLevels.Beginner,
+    icon: "images/icons/modules/uielement.png",
+    type: Enums.ComponentTypes.Module,
+    employeeTypeName: Enums.EmployeeTypeNames.Designer,
+    requirements: {
+        BlueprintComponent: 1,
+        GraphicsComponent: 1
+    }
+}, {
+    name: ComponentNames.UiSet,
+    employeeLevel: Enums.EmployeeLevels.Intermediate,
+    icon: "images/icons/modules/uiset.png",
+    type: Enums.ComponentTypes.Module,
+    employeeTypeName: Enums.EmployeeTypeNames.Designer,
+    requirements: {
+        WireframeComponent: 2,
+        UiElement: 2
+    }
+}, {
+    name: ComponentNames.ResponsiveUi,
+    employeeLevel: Enums.EmployeeLevels.Intermediate,
+    icon: "images/icons/modules/responsiveui.png",
+    type: Enums.ComponentTypes.Module,
+    employeeTypeName: Enums.EmployeeTypeNames.Designer,
+    requirements: {
+        WireframeComponent: 2,
+        UiElement: 2
+    }
+}, {
+    name: ComponentNames.DesignGuidelines,
+    employeeLevel: Enums.EmployeeLevels.Expert,
+    icon: "images/icons/modules/designguidelines.png",
+    type: Enums.ComponentTypes.Module,
+    employeeTypeName: Enums.EmployeeTypeNames.Designer,
+    requirements: {
+        DocumentationComponent: 3,
+        ResponsiveUi: 3
+    }
+}, {
+    name: ComponentNames.VirtualContainer,
+    employeeLevel: Enums.EmployeeLevels.Expert,
+    icon: "images/icons/modules/virtualcontainer.png",
+    type: Enums.ComponentTypes.Module,
+    employeeTypeName: Enums.EmployeeTypeNames.SysAdmin,
+    requirements: {
+        VirtualHardware: 1,
+        OperatingSystem: 1,
+        ProcessManagement: 1,
+        ContinuousIntegration: 1,
+        CronJob: 1
+    }
+}, {
+    name: ComponentNames.Cluster,
+    employeeLevel: Enums.EmployeeLevels.Expert,
+    icon: "images/icons/modules/cluster.png",
+    type: Enums.ComponentTypes.Module,
+    employeeTypeName: Enums.EmployeeTypeNames.SysAdmin,
+    requirements: {
+        VirtualContainer: 3,
+        Firewall: 10
+    }
+}, {
+    name: ComponentNames.SwarmManagement,
+    employeeLevel: Enums.EmployeeLevels.Expert,
+    icon: "images/icons/modules/swarmmanagement.png",
+    type: Enums.ComponentTypes.Module,
+    employeeTypeName: Enums.EmployeeTypeNames.SysAdmin,
+    requirements: {
+        Cluster: 1,
+        VirtualContainer: 1
+    }
+}];
 
 export {Components, ComponentNames};
