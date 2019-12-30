@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Avatar, Chip, withStyles} from '@material-ui/core';
-import {PanoramaFishEye as ModuleIcon} from '@material-ui/icons';
+import Enums from '../models/Enums';
 import EmployeeTypes from "../models/EmployeeTypes";
 
 class EmployeeChip extends Component {
@@ -11,21 +11,36 @@ class EmployeeChip extends Component {
             .cssClass;
     };
 
+    getEmployeeLevelIcon = (employeeLevel) => {
+        switch (employeeLevel) {
+            case Enums.EmployeeLevels.Beginner:
+                return 'fa-star-o';
+            case Enums.EmployeeLevels.Intermediate:
+                return 'fa-star-half-o';
+            case Enums.EmployeeLevels.Expert:
+                return 'fa-star';
+            default:
+                return '';
+        }
+    };
+
     render() {
         const {employeeTypeName, employeeLevel, classes} = this.props;
-        const employeeIconClass = this.getEmployeeIcon(employeeTypeName);
 
-        console.log("employeeIcon", employeeIconClass)
-        const isModule = false;
+        const employeeIconClass = this.getEmployeeIcon(employeeTypeName);
+        const employeeLevelIconClass = this.getEmployeeLevelIcon(employeeLevel);
+   
 
         return (
             <Chip
-                avatar={<Avatar className={classes.transparent}><i className={`fa ${employeeIconClass} ${classes.icon}`}></i></Avatar>}
+                avatar={<Avatar className={classes.transparent}>
+                            <i className={`fa ${employeeIconClass} ${classes.icon}`}></i>
+                    </Avatar>}
                 label={employeeTypeName}
                 className={classes.chip}
                 variant="outlined"
-                onDelete={isModule ? ()=>{} : undefined}
-                deleteIcon={isModule ? <ModuleIcon/> : undefined}
+                onDelete={() => {}}
+                deleteIcon={<i className={`fa ${employeeLevelIconClass} ${classes.icon}`}></i>}
             />
         );
     }
@@ -43,6 +58,7 @@ const styles = (theme) => ({
     icon: {
         textAlign: 'center',
         verticalAlign: 'middle',
+        margin: theme.spacing.unit,
     },
 });
 
