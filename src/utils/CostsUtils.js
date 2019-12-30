@@ -6,11 +6,14 @@ class CostsUtils {
         return this._getCosts(requirements, gcd);
     }
 
-    static updateCosts(costs, key, value) {
-        return {
-            ...costs,
-            [key]: value,
-        };
+    static updateCosts(optimalCosts, newKey, newValue) {
+        const costs = {...optimalCosts};
+
+        Object.keys(costs).forEach(key => {
+            costs[key] = +(newValue * optimalCosts[key] / optimalCosts[newKey]).toFixed(0);
+        });
+
+        return costs;
     }
 
     static _getCosts = (requirements, commonFactorCallback, formatterCallback = (num) => num) => {

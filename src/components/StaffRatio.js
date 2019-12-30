@@ -21,9 +21,10 @@ class StaffRatio extends Component {
     };
 
     handleChange = key => event => {
-        const {onCostChange} = this.props;
+        const {onCostChange, costs} = this.props;
+        const {value} = event.target;
 
-        onCostChange(key, event.target.value);
+        onCostChange(key, +value);
     };
 
     render() {
@@ -40,7 +41,7 @@ class StaffRatio extends Component {
                             <TextField
                                 key={key}
                                 label={key}
-                                value={costs[key]}
+                                value={costs[key] > 0 ? costs[key] : ''}
                                 onChange={this.handleChange(key)}
                                 className={classes.textField}
                                 InputProps={{

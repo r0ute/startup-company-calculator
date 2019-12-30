@@ -35,7 +35,7 @@ class App extends Component {
 
     handleCostChange = (key, value) => {
         this.setState((prevState) => ({
-            costs: CostsUtils.updateCosts(prevState.costs, key, value),
+            costs: CostsUtils.updateCosts(prevState.optimalCosts, key, value),
         }));
     };
 

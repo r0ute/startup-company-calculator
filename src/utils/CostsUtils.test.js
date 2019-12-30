@@ -45,12 +45,12 @@ describe('calculating costs', () => {
     it('should recalculate costs on Developer count change', () => {
         const costs = CostsUtils.updateCosts({
             [Enums.EmployeeTypeNames.Designer]: 1,
-            [Enums.EmployeeTypeNames.Developer]: 1
-        }, Enums.EmployeeTypeNames.Developer, 2);
+            [Enums.EmployeeTypeNames.Developer]: 5
+        }, Enums.EmployeeTypeNames.Developer, 10);
 
         expect(costs).toEqual({
-            [Enums.EmployeeTypeNames.Designer]: 1,
-            [Enums.EmployeeTypeNames.Developer]: 2
+            [Enums.EmployeeTypeNames.Designer]: 2,
+            [Enums.EmployeeTypeNames.Developer]: 10
         });   
     });
 });
