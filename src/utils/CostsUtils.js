@@ -7,6 +7,10 @@ class CostsUtils {
     }
 
     static getCosts = (requirements, commonFactorCallback, formatterCallback = (num) => num) => {
+        if (Object.keys(requirements).length === 0) {
+            return {};
+        }
+
         const costs = {};
 
         Object.keys(requirements).forEach(key => {
