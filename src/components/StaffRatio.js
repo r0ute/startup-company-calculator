@@ -21,7 +21,7 @@ class StaffRatio extends Component {
     };
 
     handleChange = key => event => {
-        const {onCostChange, costs} = this.props;
+        const {onCostChange} = this.props;
         const {value} = event.target;
 
         onCostChange(key, +value);
