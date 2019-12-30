@@ -7,7 +7,6 @@ import {
     TextField,
     withStyles
 } from '@material-ui/core';
-import gcd from 'compute-gcd';
 import EmployeeTypes from "../models/EmployeeTypes";
 
 class StaffRatio extends Component {
@@ -21,51 +20,26 @@ class StaffRatio extends Component {
         return left.localeCompare(right);
     };
 
-    getDevCosts = (requirements, commonFactorCallback, formatterCallback = (num) => num) => {
-        const costs = {};
-
-        Object.keys(requirements).forEach(key => {
-            const employee = requirements[key].component.employeeTypeName;
-            const produceHours = requirements[key].count * requirements[key].produceHours;
-
-            if (costs[employee]) {
-                costs[employee] = costs[employee] + produceHours;
-            } else {
-                costs[employee] = produceHours;
-            }
-        });
-
-        const commonFactor = commonFactorCallback(...Object.keys(costs)
-            .map(key => costs[key]));
-
-        Object.keys(costs).forEach(key => {
-            const cost = costs[key] / commonFactor;
-
-            costs[key] = (formatterCallback !== undefined) 
-                ? formatterCallback(cost) : cost;
-        });
-
-        return costs;
+    handleChange = key => event => {
+        this.setState({ [key]: event.target.value });
     };
 
     render() {
-        const {requirements, classes} = this.props;
-
-        const optimalDevCosts = this.getDevCosts(requirements, gcd);
+        const {costs, classes} = this.props;
 
         return (
             <FormGroup>
                 <FormLabel className={classes.label}>Optimal Staff Ratio</FormLabel>
 
-                <FormGroup row>
-                
-                    
-                    {Object.keys(optimalDevCosts)
+                <FormGroup row>              
+                    {Object.keys(costs)
                         .sort(this.sort)
                         .map(key => (
                             <TextField
+                                key={key}
                                 label={key}
-                                value={optimalDevCosts[key]}
+                                value={costs[key]}
+                                onChange={this.handleChange(key)}
                                 className={classes.textField}
                                 InputProps={{
                                     startAdornment: (
@@ -87,7 +61,7 @@ class StaffRatio extends Component {
 }
 
 StaffRatio.propTypes = {
-    requirements: PropTypes.object.isRequired,
+    costs: PropTypes.object.isRequired,
 };
 
 const styles = (theme) => ({

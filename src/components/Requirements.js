@@ -34,7 +34,7 @@ class Requirements extends Component {
     };
 
     render() {
-        const {requirements, classes} = this.props;
+        const {requirements, costs, classes} = this.props;
 
         const renderedRequirements = this.mapRequirements(requirements);
 
@@ -85,7 +85,7 @@ class Requirements extends Component {
 
                         <TableRow>
                             <TableCell colSpan={4}>
-                                <StaffRatio requirements={requirements}/>
+                                <StaffRatio requirements={requirements} costs={costs}/>
                             </TableCell>
                         </TableRow>  
                     </TableBody>
@@ -97,6 +97,7 @@ class Requirements extends Component {
 
 Requirements.propTypes = {
     requirements: PropTypes.object.isRequired,
+    costs: PropTypes.object.isRequired,
 };
 
 const styles = (theme) => ({

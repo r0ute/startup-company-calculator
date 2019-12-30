@@ -5,6 +5,7 @@ import {MoneyOff as AppIcon} from '@material-ui/icons';
 import SelectFeature from "./SelectFeature";
 import Requirements from "./Requirements";
 import RequirementsUtils from '../utils/RequirementsUtils';
+import CostsUtils from '../utils/CostsUtils';
 import Configuration from '../models/Configuration';
 
 class App extends Component {
@@ -15,19 +16,32 @@ class App extends Component {
         this.state = {
             selectedFeatures: [],
             requirements: {},
+            optimalCosts: {},
+            costs: {},
         }
     }
 
     handleFeatureChange = (features) => {
+        const requirements = RequirementsUtils.getFromFeatures(features);
+        const optimalCosts = CostsUtils.getOptimalCosts(requirements)
+
         this.setState({
             selectedFeatures: features,
-            requirements: RequirementsUtils.getFromFeatures(features),
+            requirements,
+            optimalCosts,
+            costs: optimalCosts,
+        });
+    };
+
+    handleCostChange = (key, value) => {
+        this.setState({
+
         });
     };
 
     render() {
         const {classes} = this.props;
-        const {selectedFeatures, requirements} = this.state;
+        const {selectedFeatures, requirements, costs} = this.state;
 
         return (
             <Fragment>
@@ -55,6 +69,7 @@ class App extends Component {
 
                     <Requirements
                         requirements={requirements}
+                        costs={costs}
                     />
                 </main>
             </Fragment>
