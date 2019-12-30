@@ -61,7 +61,8 @@ const styles = (theme) => ({
     },
     icon: {
         width: 'auto',
-           },
+        height: 'auto',
+    },
 });
 
 export default withStyles(styles)(EmployeeChip);

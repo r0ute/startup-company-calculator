@@ -146,9 +146,10 @@ const styles = (theme) => ({
     },
     chip: {
         marginRight: theme.spacing.unit * 2,
+        marginBottom: theme.spacing.unit,
+        marginTop: theme.spacing.unit,
     },
     table: {
-        minWidth: 700,
     },
 });
 
