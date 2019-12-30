@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
-    Avatar,
-    Chip,
     Grid,
     Paper,
     Table,
@@ -16,9 +14,9 @@ import {
 import {Help as HelpIcon} from '@material-ui/icons';
 import ComponentChip from "./ComponentChip";
 import EmployeeChip from './EmployeeChip';
+import StaffRatio from './StaffRatio';
 import moment from "moment";
 import momentDurationFormat from 'moment-duration-format';
-import gcd from 'compute-gcd';
 
 momentDurationFormat(moment);
 
@@ -35,47 +33,6 @@ class Requirements extends Component {
             || left.component.name.localeCompare(right.component.name);
     };
 
-    getDevCosts = (requirements) => {
-        const costs = {};
-
-        Object.keys(requirements).forEach(key => {
-            const employee = requirements[key].component.employeeTypeName;
-            const produceHours = requirements[key].count * requirements[key].produceHours;
-
-            if (costs[employee]) {
-                costs[employee] = costs[employee] + produceHours;
-            } else {
-                costs[employee] = produceHours;
-            }
-        });
-
-        /*
-        const costsGcd = this.computeGcd(costs);
-
-        Object.keys(costs).forEach(key => {
-            costs[key] = costs[key] / costsGcd;
-        });
-        */
-
-        const minCost = this.computeMinCost(costs);
-
-        Object.keys(costs).forEach(key => {
-            costs[key] = (costs[key] / minCost).toFixed(1);
-        });
-
-        return costs;
-    };
-
-    computeGcd = (costs) => {
-        return gcd(...Object.keys(costs)
-            .map(key => costs[key]));
-    };
-
-    computeMinCost = (costs) => {
-        return Math.min(...Object.keys(costs)
-            .map(key => costs[key]));
-    };
-
     render() {
         const {requirements, classes} = this.props;
 
@@ -84,8 +41,6 @@ class Requirements extends Component {
         if (!renderedRequirements.length) {
             return '';
         }
-
-        const devCosts = this.getDevCosts(requirements);
 
         return (
             <Paper className={classes.root}>
@@ -128,23 +83,7 @@ class Requirements extends Component {
                             </TableRow>
                         ))}
 
-                        <TableRow>
-                            <TableCell>Optimal Staff Ratio</TableCell>
-                            <TableCell colSpan={3}>
-                                {Object.keys(devCosts)
-                                    .map(key => (
-                                        <Chip
-                                            key={key}
-                                            avatar={<Avatar>{devCosts[key]}</Avatar>}
-                                            label={key}
-                                            className={classes.chip}
-                                            variant="outlined"
-                                        />
-                                    ))}
-                            </TableCell>
-
-                        </TableRow>
-
+                        <StaffRatio requirements={requirements}/>
                     </TableBody>
                 </Table>
             </Paper>
@@ -161,11 +100,6 @@ const styles = (theme) => ({
         width: '100%',
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
-    },
-    chip: {
-        marginRight: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit,
-        marginTop: theme.spacing.unit,
     },
     table: {
     },
