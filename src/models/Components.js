@@ -283,7 +283,7 @@ Components = [
     icon: "images/icons/components/researchpoint.png",
     employeeTypeName: Enums.EmployeeTypeNames.Researcher,
     type: Enums.ComponentTypes.Component,
-    produceHours: 0
+    produceHours: 1
 }, ComponentNames.FrontendModule = "FrontendModule", ComponentNames.BackendModule = "BackendModule", ComponentNames.SeoModule = "SeoModule", ComponentNames.AuthenticationModule = "AuthenticationModule", ComponentNames.ContentManagementModule = "ContentManagementModule", ComponentNames.ApiClientModule = "ApiClientModule", ComponentNames.PaymentGatewayModule = "PaymentGatewayModule", ComponentNames.VideoPlaybackModule = "VideoPlaybackModule", ComponentNames.StorageModule = "StorageModule", ComponentNames.EmailModule = "EmailModule", ComponentNames.LocalizationModule = "LocalizationModule", ComponentNames.SearchModule = "SearchModule", ComponentNames.BandwidthCompressionModule = "BandwidthCompressionModule", ComponentNames.DatabaseLayer = "DatabaseLayer", ComponentNames.InputModule = "InputModule", ComponentNames.NotificationModule = "NotificationModule", ComponentNames.InterfaceModule = "InterfaceModule", ComponentNames.CodeOptimizationModule = "CodeOptimizationModule", ComponentNames.VirtualContainer = "VirtualContainer", ComponentNames.Cluster = "Cluster", ComponentNames.SwarmManagement = "SwarmManagement", ComponentNames.UiElement = "UiElement", ComponentNames.UiSet = "UiSet", ComponentNames.ResponsiveUi = "ResponsiveUi", ComponentNames.DesignGuidelines = "DesignGuidelines", {
     name: ComponentNames.InterfaceModule,
     employeeLevel: Enums.EmployeeLevels.Beginner,

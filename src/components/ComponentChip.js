@@ -7,15 +7,15 @@ import Enums from "../models/Enums";
 class ComponentChip extends Component {
 
     render() {
-        const {requirement, classes} = this.props;
-        const isModule = requirement.component.type === Enums.ComponentTypes.Module;
+        const {component, classes} = this.props;
+        const isModule = component.type === Enums.ComponentTypes.Module;
 
         return (
             <Chip
                 avatar={<Avatar><img className={classes.icon}
-                                     src={require(`../assets/${requirement.component.icon}`)}
-                                     alt={requirement.component.name}/></Avatar>}
-                label={requirement.component.name}
+                                     src={require(`../assets/${component.icon}`)}
+                                     alt={component.name}/></Avatar>}
+                label={component.name}
                 className={classes.chip}
                 variant="outlined"
                 onDelete={isModule ? ()=>{} : undefined}
@@ -26,7 +26,7 @@ class ComponentChip extends Component {
 }
 
 ComponentChip.propTypes = {
-    requirement: PropTypes.object.isRequired,
+    component: PropTypes.object.isRequired,
 };
 
 const styles = (theme) => ({
