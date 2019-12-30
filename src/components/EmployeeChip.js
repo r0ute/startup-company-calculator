@@ -2,22 +2,25 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Avatar, Chip, withStyles} from '@material-ui/core';
 import {PanoramaFishEye as ModuleIcon} from '@material-ui/icons';
-import Enums from "../models/Enums";
-import fontawesome from '@fortawesome/fontawesome';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faCheckSquare, faCoffee } from '@fortawesome/fontawesome-free-solid';
-
-fontawesome.library.add(faCheckSquare, faCoffee);
+import EmployeeTypes from "../models/EmployeeTypes";
 
 class EmployeeChip extends Component {
 
+    getEmployeeIcon = (employeeTypeName) => {
+        return EmployeeTypes.find(type => type.name === employeeTypeName)
+            .cssClass;
+    };
+
     render() {
         const {employeeTypeName, employeeLevel, classes} = this.props;
+        const employeeIconClass = this.getEmployeeIcon(employeeTypeName);
+
+        console.log("employeeIcon", employeeIconClass)
         const isModule = false;
 
         return (
             <Chip
-                avatar={<Avatar className={classes.transparent}><FontAwesomeIcon icon="coffee" /></Avatar>}
+                avatar={<Avatar className={classes.transparent}><i className={`fa ${employeeIconClass} ${classes.icon}`}></i></Avatar>}
                 label={employeeTypeName}
                 className={classes.chip}
                 variant="outlined"
@@ -38,8 +41,8 @@ const styles = (theme) => ({
         backgroundColor: 'transparent',
     },
     icon: {
-        width: theme.spacing.unit * 4,
-        height: theme.spacing.unit * 4,
+        textAlign: 'center',
+        verticalAlign: 'middle',
     },
 });
 

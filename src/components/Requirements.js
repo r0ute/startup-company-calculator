@@ -145,7 +145,7 @@ const styles = (theme) => ({
         overflowX: 'auto',
     },
     chip: {
-        margin: theme.spacing.unit,
+        marginRight: theme.spacing.unit * 2,
     },
     table: {
         minWidth: 700,
