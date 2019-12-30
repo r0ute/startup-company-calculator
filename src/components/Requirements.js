@@ -49,11 +49,30 @@ class Requirements extends Component {
             }
         });
 
+        /*
+        const costsGcd = this.computeGcd(costs);
+
+        Object.keys(costs).forEach(key => {
+            costs[key] = costs[key] / costsGcd;
+        });
+        */
+
+        const minCost = this.computeMinCost(costs);
+
+        Object.keys(costs).forEach(key => {
+            costs[key] = (costs[key] / minCost).toFixed(1);
+        });
+
         return costs;
     };
 
     computeGcd = (costs) => {
         return gcd(...Object.keys(costs)
+            .map(key => costs[key]));
+    };
+
+    computeMinCost = (costs) => {
+        return Math.min(...Object.keys(costs)
             .map(key => costs[key]));
     };
 
@@ -67,7 +86,6 @@ class Requirements extends Component {
         }
 
         const devCosts = this.getDevCosts(requirements);
-        const costsGcd = this.computeGcd(devCosts);
 
         return (
             <Paper className={classes.root}>
@@ -117,7 +135,7 @@ class Requirements extends Component {
                                     .map(key => (
                                         <Chip
                                             key={key}
-                                            avatar={<Avatar>{devCosts[key] / costsGcd}</Avatar>}
+                                            avatar={<Avatar>{devCosts[key]}</Avatar>}
                                             label={key}
                                             className={classes.chip}
                                             variant="outlined"
