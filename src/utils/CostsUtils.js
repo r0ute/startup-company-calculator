@@ -3,10 +3,17 @@ import gcd from 'compute-gcd';
 class CostsUtils {
 
     static getOptimalCosts(requirements) {
-        return this.getCosts(requirements, gcd);
+        return this._getCosts(requirements, gcd);
     }
 
-    static getCosts = (requirements, commonFactorCallback, formatterCallback = (num) => num) => {
+    static updateCosts(costs, key, value) {
+        return {
+            ...costs,
+            [key]: value,
+        };
+    }
+
+    static _getCosts = (requirements, commonFactorCallback, formatterCallback = (num) => num) => {
         if (Object.keys(requirements).length === 0) {
             return {};
         }

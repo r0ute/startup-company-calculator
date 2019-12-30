@@ -4,13 +4,13 @@ class RequirementsUtils {
 
     static getFromFeatures = (features) => {
         return features.reduce((requirements, feature) => {
-            RequirementsUtils.getComponentRequirements(feature.requirements, requirements);
+            RequirementsUtils._getComponentRequirements(feature.requirements, requirements);
 
             return requirements;
         }, {})
     };
 
-    static getComponentRequirements(componentRequirements, allRequirements, multiplier = 1) {
+    static _getComponentRequirements(componentRequirements, allRequirements, multiplier = 1) {
         let produceHours = 0;
 
         Object.keys(componentRequirements)
@@ -27,7 +27,7 @@ class RequirementsUtils {
                 }
 
                 if (component.requirements) {
-                    allRequirements[key].produceHours = RequirementsUtils.getComponentRequirements(component.requirements,
+                    allRequirements[key].produceHours = RequirementsUtils._getComponentRequirements(component.requirements,
                          allRequirements, componentRequirements[key])
                 } else {
                     allRequirements[key].produceHours = component.produceHours;

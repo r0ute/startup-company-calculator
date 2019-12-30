@@ -34,9 +34,9 @@ class App extends Component {
     };
 
     handleCostChange = (key, value) => {
-        this.setState({
-
-        });
+        this.setState((prevState) => ({
+            costs: CostsUtils.updateCosts(prevState.costs, key, value),
+        }));
     };
 
     render() {
@@ -70,6 +70,7 @@ class App extends Component {
                     <Requirements
                         requirements={requirements}
                         costs={costs}
+                        onCostChange={this.handleCostChange}
                     />
                 </main>
             </Fragment>

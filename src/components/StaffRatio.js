@@ -21,7 +21,9 @@ class StaffRatio extends Component {
     };
 
     handleChange = key => event => {
-        this.setState({ [key]: event.target.value });
+        const {onCostChange} = this.props;
+
+        onCostChange(key, event.target.value);
     };
 
     render() {
@@ -62,6 +64,7 @@ class StaffRatio extends Component {
 
 StaffRatio.propTypes = {
     costs: PropTypes.object.isRequired,
+    onCostChange: PropTypes.func.isRequired,
 };
 
 const styles = (theme) => ({

@@ -6,7 +6,7 @@ describe('calculating costs', () => {
 
     it('should not calculate any costs because of missing requirements', () => {
         const commonFactorCallback = jest.fn();
-        const costs = CostsUtils.getCosts({}, commonFactorCallback);
+        const costs = CostsUtils._getCosts({}, commonFactorCallback);
 
         expect(costs).toEqual({});
         expect(commonFactorCallback).not.toHaveBeenCalled();
@@ -40,5 +40,17 @@ describe('calculating costs', () => {
             [Enums.EmployeeTypeNames.Designer]: 1,
             [Enums.EmployeeTypeNames.Developer]: 1
         });
+    });
+
+    it('should recalculate costs on Developer count change', () => {
+        const costs = CostsUtils.updateCosts({
+            [Enums.EmployeeTypeNames.Designer]: 1,
+            [Enums.EmployeeTypeNames.Developer]: 1
+        }, Enums.EmployeeTypeNames.Developer, 2);
+
+        expect(costs).toEqual({
+            [Enums.EmployeeTypeNames.Designer]: 1,
+            [Enums.EmployeeTypeNames.Developer]: 2
+        });   
     });
 });
