@@ -33,14 +33,18 @@ class EmployeeChip extends Component {
 
         return (
             <Chip
-                avatar={<Avatar className={classes.transparent}>
-                            <i className={`fa ${employeeIconClass} ${classes.icon}`}></i>
-                    </Avatar>}
+                avatar={<Avatar 
+                    className={classes.transparent}
+                    children={<i className={`fa ${employeeIconClass} ${classes.icon}`}></i>}
+                />}            
                 label={employeeTypeName}
                 className={classes.chip}
                 variant="outlined"
                 onDelete={() => {}}
-                deleteIcon={<i className={`fa ${employeeLevelIconClass} ${classes.icon}`}></i>}
+                deleteIcon={<Avatar
+                    className={classes.transparent}
+                    children={<i className={`fa ${employeeLevelIconClass} ${classes.icon}`}></i>}
+                />}
             />
         );
     }
@@ -56,10 +60,8 @@ const styles = (theme) => ({
         backgroundColor: 'transparent',
     },
     icon: {
-        textAlign: 'center',
-        verticalAlign: 'middle',
-        margin: theme.spacing.unit,
-    },
+        width: 'auto',
+           },
 });
 
 export default withStyles(styles)(EmployeeChip);
