@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 import {Help as HelpIcon} from '@material-ui/icons';
 import ComponentChip from "./ComponentChip";
+import EmployeeChip from './EmployeeChip';
 import moment from "moment";
 import momentDurationFormat from 'moment-duration-format';
 import gcd from 'compute-gcd';
@@ -95,9 +96,14 @@ class Requirements extends Component {
                         {renderedRequirements.map(requirement => (
                             <TableRow key={requirement.component.name}>
                                 <TableCell>
-                                    <ComponentChip requirement={requirement}/>
+                                    <ComponentChip component={requirement.component}/>
                                 </TableCell>
-                                <TableCell>{`${requirement.component.employeeTypeName} (${requirement.component.employeeLevel})`} </TableCell>
+                                <TableCell>
+                                    <EmployeeChip 
+                                        employeeTypeName={requirement.component.employeeTypeName}
+                                        employeeLevel={requirement.component.employeeLevel}
+                                    />
+                                </TableCell>
                                 <TableCell align="right">{requirement.count}</TableCell>
                                 <TableCell
                                     align="right">{moment.duration(requirement.produceHours, 'hours').format('D[d] h[h]')}</TableCell>

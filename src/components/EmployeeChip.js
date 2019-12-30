@@ -4,18 +4,16 @@ import {Avatar, Chip, withStyles} from '@material-ui/core';
 import {PanoramaFishEye as ModuleIcon} from '@material-ui/icons';
 import Enums from "../models/Enums";
 
-class ComponentChip extends Component {
+class EmployeeChip extends Component {
 
     render() {
-        const {component, classes} = this.props;
-        const isModule = component.type === Enums.ComponentTypes.Module;
+        const {employeeTypeName, employeeLevel, classes} = this.props;
+        const isModule = false;
 
         return (
             <Chip
-                avatar={<Avatar><img className={classes.icon}
-                                     src={require(`../assets/${component.icon}`)}
-                                     alt={component.name}/></Avatar>}
-                label={component.name}
+                avatar={<Avatar></Avatar>}
+                label={employeeTypeName}
                 className={classes.chip}
                 variant="outlined"
                 onDelete={isModule ? ()=>{} : undefined}
@@ -25,8 +23,9 @@ class ComponentChip extends Component {
     }
 }
 
-ComponentChip.propTypes = {
-    component: PropTypes.object.isRequired,
+EmployeeChip.propTypes = {
+    employeeTypeName: PropTypes.object.isRequired,
+    employeeLevel: PropTypes.object.isRequired,
 };
 
 const styles = (theme) => ({
@@ -36,4 +35,4 @@ const styles = (theme) => ({
     },
 });
 
-export default withStyles(styles)(ComponentChip);
+export default withStyles(styles)(EmployeeChip);
