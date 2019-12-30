@@ -83,7 +83,11 @@ class Requirements extends Component {
                             </TableRow>
                         ))}
 
-                        <StaffRatio requirements={requirements}/>
+                        <TableRow>
+                            <TableCell colSpan={4}>
+                                <StaffRatio requirements={requirements}/>
+                            </TableCell>
+                        </TableRow>  
                     </TableBody>
                 </Table>
             </Paper>

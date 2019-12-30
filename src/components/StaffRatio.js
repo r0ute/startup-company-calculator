@@ -1,10 +1,25 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Avatar, Chip, withStyles} from '@material-ui/core';
+import {
+    InputAdornment,
+    FormLabel,
+    FormGroup,
+    TextField,
+    withStyles
+} from '@material-ui/core';
 import gcd from 'compute-gcd';
-import {TableRow, TableCell} from '@material-ui/core';
+import EmployeeTypes from "../models/EmployeeTypes";
 
 class StaffRatio extends Component {
+
+    getEmployeeIcon = (employeeTypeName) => {
+        return EmployeeTypes.find(type => type.name === employeeTypeName)
+            .cssClass;
+    };
+
+    sort = (left, right) => {
+        return left.localeCompare(right);
+    };
 
     getDevCosts = (requirements, commonFactorCallback, formatterCallback = (num) => num) => {
         const costs = {};
@@ -36,26 +51,36 @@ class StaffRatio extends Component {
     render() {
         const {requirements, classes} = this.props;
 
-        const precise = true;
-        const devCosts = this.getDevCosts(requirements, (precise) ? gcd : Math.min, (precise) ? undefined : (num) => num.toFixed(1));
+        const optimalDevCosts = this.getDevCosts(requirements, gcd);
 
         return (
-            <TableRow>
-                <TableCell>Optimal Staff Ratio</TableCell>
-                <TableCell colSpan={3}>
-                    {Object.keys(devCosts)
-                        .map(key => (
-                            <Chip
-                                key={key}
-                                avatar={<Avatar>{devCosts[key]}</Avatar>}
-                                label={key}
-                                className={classes.chip}
-                                variant="outlined"
-                            />
-                        ))}
-                </TableCell>
+            <FormGroup>
+                <FormLabel className={classes.label}>Optimal Staff Ratio</FormLabel>
 
-            </TableRow>
+                <FormGroup row>
+                
+                    
+                    {Object.keys(optimalDevCosts)
+                        .sort(this.sort)
+                        .map(key => (
+                            <TextField
+                                label={key}
+                                value={optimalDevCosts[key]}
+                                className={classes.textField}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start" className={classes.adornment}>
+                                            <i className={`fa ${this.getEmployeeIcon(key)} ${classes.icon}`}></i>
+                                        </InputAdornment>
+                                )}}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                type="number"
+                                margin="normal"/>
+                        ))}
+                </FormGroup>
+            </FormGroup>
         );
     }
 
@@ -66,10 +91,16 @@ StaffRatio.propTypes = {
 };
 
 const styles = (theme) => ({
-    chip: {
+    label: {
+        marginTop: theme.spacing.unit * 2,
+    },
+    adornment: {
+        width: theme.spacing.unit * 2,
+    },
+    textField: {
+        textAlign: 'left',
+        width: theme.spacing.unit * 10,
         marginRight: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit,
-        marginTop: theme.spacing.unit,
     },
 });
 
