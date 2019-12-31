@@ -130,7 +130,7 @@ const FeatureNames = {
                 FrontendModule: 1,
                 VideoPlaybackModule: 1,
             },
-            faIcon: 'fa-video-o',
+            faIcon: 'fa-file-video-o',
             categoryName: Enums.FeatureCategories.Users,
         },
         {

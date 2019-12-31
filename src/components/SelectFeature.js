@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {
+    Avatar,
     Chip,
     MenuItem,
+    ListItemIcon,
     Paper,
     TextField,
     Typography,
@@ -59,6 +61,14 @@ const Option = props => {
             }}
             {...props.innerProps}
         >
+            <ListItemIcon>
+                <i
+                    className={`fa ${
+                        Features.find(feature => feature.name === props.value)
+                            .faIcon
+                    }`}
+                ></i>
+            </ListItemIcon>
             {props.children}
         </MenuItem>
     );
@@ -103,6 +113,19 @@ const MultiValue = props => {
             className={classNames(props.selectProps.classes.chip, {
                 [props.selectProps.classes.chipFocused]: props.isFocused,
             })}
+            avatar={
+                <Avatar>
+                    <i
+                        className={classNames(
+                            props.selectProps.classes.icon,
+                            'fa',
+                            Features.find(
+                                feature => feature.name === props.children
+                            ).faIcon
+                        )}
+                    ></i>
+                </Avatar>
+            }
             onDelete={props.removeProps.onClick}
         />
     );
@@ -147,7 +170,7 @@ class SelectFeature extends Component {
     handleFeatureChange = option => {
         const { onChange } = this.props;
 
-        const featureIds = option.map(opt => opt.value);
+        const featureIds = !option ? [] : option.map(opt => opt.value);
 
         onChange(Features.filter(feature => featureIds.includes(feature.name)));
     };
@@ -167,10 +190,14 @@ class SelectFeature extends Component {
                 options={this.allFeatures.filter(
                     feature => !selectedFeatures.includes(feature)
                 )}
-                value={selectedFeatures.map(feature => ({
-                    value: feature.name,
-                    label: feature.name,
-                }))}
+                value={selectedFeatures
+                    .map(feature => ({
+                        value: feature.name,
+                        label: feature.name,
+                    }))
+                    .sort((left, right) =>
+                        left.label.localeCompare(right.label)
+                    )}
                 onChange={this.handleFeatureChange}
                 placeholder="Add Feature..."
                 isMulti
@@ -202,6 +229,10 @@ const styles = theme => ({
     },
     chip: {
         margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
+    },
+    icon: {
+        width: 'auto',
+        height: 'auto',
     },
     chipFocused: {
         backgroundColor: emphasize(

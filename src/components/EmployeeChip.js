@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Avatar, Chip, withStyles } from '@material-ui/core';
 import Enums from '../models/Enums';
 import EmployeeTypes from '../models/EmployeeTypes';
+import classNames from 'classnames';
 
 class EmployeeChip extends Component {
     getEmployeeIcon = employeeTypeName => {
@@ -33,7 +34,10 @@ class EmployeeChip extends Component {
             <Chip
                 avatar={
                     <Avatar
-                        className={classes.transparent}
+                        className={classNames(
+                            classes.transparent,
+                            classes.employeeAvatar
+                        )}
                         children={
                             <i
                                 className={`fa ${employeeIconClass} ${classes.icon}`}
@@ -47,10 +51,13 @@ class EmployeeChip extends Component {
                 onDelete={() => {}}
                 deleteIcon={
                     <Avatar
-                        className={classes.transparent}
+                        className={classNames(
+                            classes.transparent,
+                            classes.employeeLevelAvatar
+                        )}
                         children={
                             <i
-                                className={`fa ${employeeLevelIconClass} ${classes.icon}`}
+                                className={`fa ${employeeLevelIconClass} ${classes.starIcon}`}
                             ></i>
                         }
                     />
@@ -72,6 +79,14 @@ const styles = theme => ({
     icon: {
         width: 'auto',
         height: 'auto',
+    },
+    employeeAvatar: {
+        width: theme.spacing.unit * 4,
+        height: theme.spacing.unit * 4,
+    },
+    employeeLevelAvatar: {
+        width: theme.spacing.unit * 3,
+        height: theme.spacing.unit * 3,
     },
 });
 
