@@ -1,40 +1,71 @@
 {
-  "name": "startup-company-calculator",
-  "version": "0.1.0",
-  "private": true,
-  "homepage": "https://r0ute.github.io/startup-company-calculator",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "eject": "react-scripts eject"
-  },
-  "dependencies": {
-    "@material-ui/core": "^3.9.4",
-    "@material-ui/icons": "^3.0.2",
-    "classnames": "latest",
-    "compute-gcd": "^1.2.0",
-    "moment": "^2.24.0",
-    "moment-duration-format": "^2.3.2",
-    "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-ga": "^2.7.0",
-    "react-scripts": "2.1.3",
-    "react-select": "^2.4.4"
-  },
-  "devDependencies": {
-    "gh-pages": "^2.1.1"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "name": "startup-company-calculator",
+    "version": "0.1.0",
+    "private": true,
+    "homepage": "https://r0ute.github.io/startup-company-calculator",
+    "scripts": {
+        "analyze": "source-map-explorer build/static/js/main.*",
+        "lint": "eslint --fix src",
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build",
+        "eject": "react-scripts eject"
+    },
+    "dependencies": {
+        "@material-ui/core": "^3.9.4",
+        "@material-ui/icons": "^3.0.2",
+        "classnames": "latest",
+        "compute-gcd": "^1.2.0",
+        "moment": "^2.24.0",
+        "moment-duration-format": "^2.3.2",
+        "prop-types": "^15.7.2",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "react-ga": "^2.7.0",
+        "react-scripts": "2.1.3",
+        "react-select": "^2.4.4"
+    },
+    "devDependencies": {
+        "eslint-config-prettier": "^6.9.0",
+        "eslint-plugin-prettier": "^3.1.2",
+        "gh-pages": "^2.1.1",
+        "husky": "^3.1.0",
+        "lint-staged": "^9.5.0",
+        "prettier": "^1.19.1",
+        "source-map-explorer": "^2.2.0"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "plugin:prettier/recommended"
+        ]
+    },
+    "prettier": {
+        "singleQuote": true,
+        "tabWidth": 4,
+        "trailingComma": "es5"
+    },
+    "lint-staged": {
+        "*.{js,jsx}": [
+            "eslint --fix",
+            "git add"
+        ],
+        "*.{json|css|md}": [
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ]
 }

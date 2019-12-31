@@ -1,15 +1,20 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import {AppBar, CssBaseline, Toolbar, Typography, withStyles} from '@material-ui/core';
-import {MoneyOff as AppIcon} from '@material-ui/icons';
-import SelectFeature from "./SelectFeature";
-import Requirements from "./Requirements";
+import {
+    AppBar,
+    CssBaseline,
+    Toolbar,
+    Typography,
+    withStyles,
+} from '@material-ui/core';
+import { MoneyOff as AppIcon } from '@material-ui/icons';
+import SelectFeature from './SelectFeature';
+import Requirements from './Requirements';
 import RequirementsUtils from '../utils/RequirementsUtils';
 import CostsUtils from '../utils/CostsUtils';
 import Configuration from '../models/Configuration';
 
 class App extends Component {
-
     constructor(props) {
         super(props);
 
@@ -18,12 +23,12 @@ class App extends Component {
             requirements: {},
             optimalCosts: {},
             costs: {},
-        }
+        };
     }
 
-    handleFeatureChange = (features) => {
+    handleFeatureChange = features => {
         const requirements = RequirementsUtils.getFromFeatures(features);
-        const optimalCosts = CostsUtils.getOptimalCosts(requirements)
+        const optimalCosts = CostsUtils.getOptimalCosts(requirements);
 
         this.setState({
             selectedFeatures: features,
@@ -34,28 +39,33 @@ class App extends Component {
     };
 
     handleCostChange = (key, value) => {
-        this.setState((prevState) => ({
+        this.setState(prevState => ({
             costs: CostsUtils.updateCosts(prevState.optimalCosts, key, value),
         }));
     };
 
     render() {
-        const {classes} = this.props;
-        const {selectedFeatures, requirements, costs} = this.state;
+        const { classes } = this.props;
+        const { selectedFeatures, requirements, costs } = this.state;
 
         return (
             <Fragment>
-                <CssBaseline/>
+                <CssBaseline />
 
                 <AppBar position="static" className={classes.appBar}>
                     <Toolbar>
-                        <AppIcon className={classes.icon}/>
-                        <Typography variant="h6" className={classes.title} noWrap>
-                            Startup Company Calculator 
+                        <AppIcon className={classes.icon} />
+                        <Typography
+                            variant="h6"
+                            className={classes.title}
+                            noWrap
+                        >
+                            Startup Company Calculator
                         </Typography>
                         <div className={classes.version}>
-                            <Typography color='inherit'>
-                                Game Version: {Configuration.BETA_VERSION}.{Configuration.BETA_SUBVERSION}
+                            <Typography color="inherit">
+                                Game Version: {Configuration.BETA_VERSION}.
+                                {Configuration.BETA_SUBVERSION}
                             </Typography>
                         </div>
                     </Toolbar>
@@ -79,7 +89,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
 };
 
 const styles = theme => ({
@@ -94,7 +104,7 @@ const styles = theme => ({
         flexGrow: 1,
         display: 'none',
         [theme.breakpoints.up('sm')]: {
-          display: 'block',
+            display: 'block',
         },
     },
     version: {
@@ -103,13 +113,13 @@ const styles = theme => ({
         marginLeft: 0,
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-          marginLeft: 1,
-          width: 'auto',
+            marginLeft: 1,
+            width: 'auto',
         },
     },
     main: {
         margin: theme.spacing.unit * 2,
-    }
+    },
 });
 
 export default withStyles(styles)(App);
