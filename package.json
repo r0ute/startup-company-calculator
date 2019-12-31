@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://r0ute.github.io/startup-company-calculator",
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -26,7 +27,8 @@
     "react-select": "^2.4.4"
   },
   "devDependencies": {
-    "gh-pages": "^2.1.1"
+    "gh-pages": "^2.1.1",
+    "source-map-explorer": "^2.2.0"
   },
   "eslintConfig": {
     "extends": "react-app"
