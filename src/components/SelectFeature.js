@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     Chip,
     MenuItem,
+    ListItemIcon,
     Paper,
     TextField,
     Typography,
@@ -59,6 +60,14 @@ const Option = props => {
             }}
             {...props.innerProps}
         >
+            <ListItemIcon>
+                <i
+                    className={`fa ${
+                        Features.find(feature => feature.name === props.value)
+                            .faIcon
+                    }`}
+                ></i>
+            </ListItemIcon>
             {props.children}
         </MenuItem>
     );
