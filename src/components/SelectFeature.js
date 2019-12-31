@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+    Avatar,
     Chip,
     MenuItem,
     ListItemIcon,
@@ -112,6 +113,19 @@ const MultiValue = props => {
             className={classNames(props.selectProps.classes.chip, {
                 [props.selectProps.classes.chipFocused]: props.isFocused,
             })}
+            avatar={
+                <Avatar>
+                    <i
+                        className={classNames(
+                            props.selectProps.classes.icon,
+                            'fa',
+                            Features.find(
+                                feature => feature.name === props.children
+                            ).faIcon
+                        )}
+                    ></i>
+                </Avatar>
+            }
             onDelete={props.removeProps.onClick}
         />
     );
@@ -211,6 +225,10 @@ const styles = theme => ({
     },
     chip: {
         margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
+    },
+    icon: {
+        width: 'auto',
+        height: 'auto',
     },
     chipFocused: {
         backgroundColor: emphasize(
