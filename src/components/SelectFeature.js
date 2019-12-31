@@ -147,7 +147,7 @@ class SelectFeature extends Component {
     handleFeatureChange = option => {
         const { onChange } = this.props;
 
-        const featureIds = option.map(opt => opt.value);
+        const featureIds = !option ? [] : option.map(opt => opt.value);
 
         onChange(Features.filter(feature => featureIds.includes(feature.name)));
     };
