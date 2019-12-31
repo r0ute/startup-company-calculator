@@ -5,6 +5,7 @@
     "homepage": "https://r0ute.github.io/startup-company-calculator",
     "scripts": {
         "analyze": "source-map-explorer build/static/js/main.*",
+        "lint": "eslint --fix src",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",

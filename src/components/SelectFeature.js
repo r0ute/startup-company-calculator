@@ -1,13 +1,20 @@
-import React, {Component} from 'react';
-import {Chip, MenuItem, Paper, TextField, Typography, withStyles} from '@material-ui/core';
+import React, { Component } from 'react';
+import {
+    Chip,
+    MenuItem,
+    Paper,
+    TextField,
+    Typography,
+    withStyles,
+} from '@material-ui/core';
 import Select from 'react-select';
-import {Features} from '../models/Features';
+import { Features } from '../models/Features';
 import PropTypes from 'prop-types';
-import {emphasize} from '@material-ui/core/styles/colorManipulator';
+import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import classNames from 'classnames';
-import Enums from "../models/Enums";
+import Enums from '../models/Enums';
 
-const NoOptionsMessage = (props) => {
+const NoOptionsMessage = props => {
     return (
         <Typography
             color="textSecondary"
@@ -19,11 +26,11 @@ const NoOptionsMessage = (props) => {
     );
 };
 
-const inputComponent = ({inputRef, ...props}) => {
+const inputComponent = ({ inputRef, ...props }) => {
     return <div ref={inputRef} {...props} />;
 };
 
-const Control = (props) => {
+const Control = props => {
     return (
         <TextField
             fullWidth
@@ -41,7 +48,7 @@ const Control = (props) => {
     );
 };
 
-const Option = (props) => {
+const Option = props => {
     return (
         <MenuItem
             buttonRef={props.innerRef}
@@ -57,7 +64,7 @@ const Option = (props) => {
     );
 };
 
-const Placeholder = (props) => {
+const Placeholder = props => {
     return (
         <Typography
             color="textSecondary"
@@ -69,19 +76,26 @@ const Placeholder = (props) => {
     );
 };
 
-const SingleValue = (props) => {
+const SingleValue = props => {
     return (
-        <Typography className={props.selectProps.classes.singleValue} {...props.innerProps}>
+        <Typography
+            className={props.selectProps.classes.singleValue}
+            {...props.innerProps}
+        >
             {props.children}
         </Typography>
     );
 };
 
-const ValueContainer = (props) => {
-    return <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
+const ValueContainer = props => {
+    return (
+        <div className={props.selectProps.classes.valueContainer}>
+            {props.children}
+        </div>
+    );
 };
 
-const MultiValue = (props) => {
+const MultiValue = props => {
     return (
         <Chip
             tabIndex={-1}
@@ -94,9 +108,13 @@ const MultiValue = (props) => {
     );
 };
 
-const Menu = (props) => {
+const Menu = props => {
     return (
-        <Paper square className={props.selectProps.classes.paper} {...props.innerProps}>
+        <Paper
+            square
+            className={props.selectProps.classes.paper}
+            {...props.innerProps}
+        >
             {props.children}
         </Paper>
     );
@@ -113,17 +131,21 @@ const components = {
     ValueContainer,
 };
 
-
 class SelectFeature extends Component {
-
-    allFeatures = Features.filter(feature => [Enums.FeatureCategories.Users, Enums.FeatureCategories.Enhancement].includes(feature.categoryName))
+    allFeatures = Features.filter(feature =>
+        [
+            Enums.FeatureCategories.Users,
+            Enums.FeatureCategories.Enhancement,
+        ].includes(feature.categoryName)
+    )
         .map(feature => ({
             value: feature.name,
             label: feature.name,
-        })).sort((left, right) => left.label.localeCompare(right.label));
+        }))
+        .sort((left, right) => left.label.localeCompare(right.label));
 
-    handleFeatureChange = (option) => {
-        const {onChange} = this.props;
+    handleFeatureChange = option => {
+        const { onChange } = this.props;
 
         const featureIds = option.map(opt => opt.value);
 
@@ -131,7 +153,7 @@ class SelectFeature extends Component {
     };
 
     render() {
-        const {classes, selectedFeatures} = this.props;
+        const { classes, selectedFeatures } = this.props;
 
         return (
             <Select
@@ -142,7 +164,9 @@ class SelectFeature extends Component {
                         shrink: true,
                     },
                 }}
-                options={this.allFeatures.filter(feature => !selectedFeatures.includes(feature))}
+                options={this.allFeatures.filter(
+                    feature => !selectedFeatures.includes(feature)
+                )}
                 value={selectedFeatures.map(feature => ({
                     value: feature.name,
                     label: feature.name,
@@ -152,7 +176,6 @@ class SelectFeature extends Component {
                 isMulti
             />
         );
-
     }
 }
 
@@ -182,8 +205,10 @@ const styles = theme => ({
     },
     chipFocused: {
         backgroundColor: emphasize(
-            theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700],
-            0.08,
+            theme.palette.type === 'light'
+                ? theme.palette.grey[300]
+                : theme.palette.grey[700],
+            0.08
         ),
     },
     noOptionsMessage: {
