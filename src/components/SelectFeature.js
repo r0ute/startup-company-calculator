@@ -190,10 +190,14 @@ class SelectFeature extends Component {
                 options={this.allFeatures.filter(
                     feature => !selectedFeatures.includes(feature)
                 )}
-                value={selectedFeatures.map(feature => ({
-                    value: feature.name,
-                    label: feature.name,
-                }))}
+                value={selectedFeatures
+                    .map(feature => ({
+                        value: feature.name,
+                        label: feature.name,
+                    }))
+                    .sort((left, right) =>
+                        left.label.localeCompare(right.label)
+                    )}
                 onChange={this.handleFeatureChange}
                 placeholder="Add Feature..."
                 isMulti
