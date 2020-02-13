@@ -21,6 +21,7 @@ const FeatureNames = {
         LiveStreaming: 'LiveStreaming',
         AdBlockObfuscator: 'AdBlockObfuscator',
         DdosProtection: 'DdosProtection',
+        HelpSystem: 'HelpSystem',
     },
     AdsFeatureNames = [
         FeatureNames.TextAds,
@@ -246,6 +247,18 @@ const FeatureNames = {
                 ResearchPoint: 200,
                 SwarmManagement: 1,
                 Firewall: 5,
+            },
+        },
+        {
+            name: FeatureNames.HelpSystem,
+            faIcon: 'fa-life-ring',
+            categoryName: Enums.FeatureCategories.Enhancement,
+            requirements: {
+                ContentManagementModule: 4,
+                InputModule: 4,
+                FrontendModule: 3,
+                BackendModule: 3,
+                UiSet: 2,
             },
         },
     ];
