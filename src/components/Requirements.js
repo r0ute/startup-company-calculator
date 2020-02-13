@@ -52,7 +52,7 @@ class Requirements extends Component {
 
         return (
             <Paper className={classes.root}>
-                <Table className={classes.table}>
+                <Table className={classes.table} padding="dense">
                     <TableHead>
                         <TableRow>
                             <TableCell>Component</TableCell>
