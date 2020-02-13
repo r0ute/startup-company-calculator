@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import { MoneyOff as AppIcon } from '@material-ui/icons';
 import SelectFeature from './SelectFeature';
-import Requirements from './Requirements';
+import RequirementsHoc from './RequirementsHoc';
 import RequirementsUtils from '../utils/RequirementsUtils';
 import CostsUtils from '../utils/CostsUtils';
 import Configuration from '../models/Configuration';
@@ -77,7 +77,7 @@ class App extends Component {
                         onChange={this.handleFeatureChange}
                     />
 
-                    <Requirements
+                    <RequirementsHoc
                         requirements={requirements}
                         costs={costs}
                         onCostChange={this.handleCostChange}

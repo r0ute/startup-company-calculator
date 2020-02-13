@@ -25,7 +25,7 @@ class EmployeeChip extends Component {
     };
 
     render() {
-        const { employeeTypeName, employeeLevel, classes } = this.props;
+        const { employeeTypeName, employeeLevel, classes, width } = this.props;
 
         const employeeIconClass = this.getEmployeeIcon(employeeTypeName);
         const employeeLevelIconClass = this.getEmployeeLevelIcon(employeeLevel);
@@ -45,7 +45,7 @@ class EmployeeChip extends Component {
                         }
                     />
                 }
-                label={employeeTypeName}
+                label={width === 'xs' ? undefined : employeeTypeName}
                 className={classes.chip}
                 variant="outlined"
                 onDelete={() => {}}
@@ -70,6 +70,7 @@ class EmployeeChip extends Component {
 EmployeeChip.propTypes = {
     employeeTypeName: PropTypes.string.isRequired,
     employeeLevel: PropTypes.string.isRequired,
+    width: PropTypes.string,
 };
 
 const styles = theme => ({

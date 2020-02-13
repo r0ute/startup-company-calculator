@@ -6,7 +6,7 @@ import Enums from '../models/Enums';
 
 class ComponentChip extends Component {
     render() {
-        const { component, classes } = this.props;
+        const { component, classes, width } = this.props;
         const isModule = component.type === Enums.ComponentTypes.Module;
 
         return (
@@ -20,7 +20,7 @@ class ComponentChip extends Component {
                         />
                     </Avatar>
                 }
-                label={component.name}
+                label={width === 'xs' ? undefined : component.name}
                 className={classes.chip}
                 variant="outlined"
                 onDelete={isModule ? () => {} : undefined}
@@ -32,6 +32,7 @@ class ComponentChip extends Component {
 
 ComponentChip.propTypes = {
     component: PropTypes.object.isRequired,
+    width: PropTypes.string,
 };
 
 const styles = theme => ({
