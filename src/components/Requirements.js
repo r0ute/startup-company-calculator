@@ -36,7 +36,13 @@ class Requirements extends Component {
     };
 
     render() {
-        const { requirements, costs, onCostChange, classes } = this.props;
+        const {
+            requirements,
+            costs,
+            onCostChange,
+            classes,
+            width,
+        } = this.props;
 
         const renderedRequirements = this.mapRequirements(requirements);
 
@@ -74,6 +80,7 @@ class Requirements extends Component {
                                 <TableCell>
                                     <ComponentChip
                                         component={requirement.component}
+                                        width={width}
                                     />
                                 </TableCell>
                                 <TableCell>
@@ -85,6 +92,7 @@ class Requirements extends Component {
                                         employeeLevel={
                                             requirement.component.employeeLevel
                                         }
+                                        width={width}
                                     />
                                 </TableCell>
                                 <TableCell align="right">
