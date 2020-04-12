@@ -53,14 +53,6 @@ const Enums = {
         Medium: 'Medium',
         High: 'High',
     },
-    ContractStatuses: {
-        NotSet: 'NotSet',
-        Declined: 'Declined',
-        OfferSent: 'OfferSent',
-        Won: 'Won',
-        Lost: 'Lost',
-        Cancelled: 'Cancelled',
-    },
     ContractTypes: {
         FixedPrice: 'FixedPrice',
         LimitedRFQ: 'LimitedRFQ',

@@ -64,8 +64,8 @@ class App extends Component {
                         </Typography>
                         <div className={classes.version}>
                             <Typography color="inherit">
-                                Game Version: {Configuration.BETA_VERSION}.
-                                {Configuration.BETA_SUBVERSION}
+                                Game Version: {Configuration.VERSION}.
+                                {Configuration.SUBVERSION}
                             </Typography>
                         </div>
                     </Toolbar>
