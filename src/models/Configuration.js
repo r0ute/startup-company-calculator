@@ -1,6 +1,6 @@
 const Configuration = {
-    BETA_VERSION: 29,
-    BETA_SUBVERSION: 2,
+    VERSION: 1,
+    SUBVERSION: 0,
 };
 
 export default Configuration;

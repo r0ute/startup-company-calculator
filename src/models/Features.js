@@ -22,6 +22,7 @@ const FeatureNames = {
         AdBlockObfuscator: 'AdBlockObfuscator',
         DdosProtection: 'DdosProtection',
         HelpSystem: 'HelpSystem',
+        ProfilePage: 'ProfilePage',
     },
     AdsFeatureNames = [
         FeatureNames.TextAds,
@@ -260,6 +261,19 @@ const FeatureNames = {
                 BackendModule: 3,
                 UiSet: 2,
             },
+        },
+        {
+            name: FeatureNames.ProfilePage,
+            faIcon: 'fa-user-circle',
+            categoryName: Enums.FeatureCategories.Users,
+            requirements: {
+                InputModule: 4,
+                FrontendModule: 3,
+                BackendModule: 3,
+                UiSet: 2,
+                AuthenticationModule: 1,
+            },
+            level: Enums.EmployeeLevels.Intermediate,
         },
     ];
 
