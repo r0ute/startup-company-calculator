@@ -1,6 +1,6 @@
 const Configuration = {
     VERSION: 1,
-    SUBVERSION: 0,
+    SUBVERSION: 9,
 };
 
 export default Configuration;
