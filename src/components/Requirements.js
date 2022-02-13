@@ -12,15 +12,15 @@ import {
     withStyles,
 } from '@material-ui/core';
 import { Help as HelpIcon } from '@material-ui/icons';
-import ComponentChip from '../ComponentChip';
-import EmployeeChip from '../EmployeeChip';
-import StaffRatio from '../StaffRatio';
+import ComponentChip from './ComponentChip';
+import EmployeeChip from './EmployeeChip';
+import StaffRatio from './StaffRatio';
 import moment from 'moment';
 import momentDurationFormat from 'moment-duration-format';
 
 momentDurationFormat(moment);
 
-class RackDeviceRequirements extends Component {
+class Requirements extends Component {
     mapRequirements = requirements => {
         return Object.keys(requirements)
             .map(key => requirements[key])
@@ -125,7 +125,7 @@ class RackDeviceRequirements extends Component {
     }
 }
 
-RackDeviceRequirements.propTypes = {
+Requirements.propTypes = {
     requirements: PropTypes.object.isRequired,
     costs: PropTypes.object.isRequired,
     onCostChange: PropTypes.func.isRequired,
@@ -140,4 +140,4 @@ const styles = theme => ({
     table: {},
 });
 
-export default withStyles(styles)(RackDeviceRequirements);
+export default withStyles(styles)(Requirements);

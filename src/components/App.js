@@ -12,8 +12,8 @@ import {
     withStyles,
 } from '@material-ui/core';
 import { MoneyOff as AppIcon } from '@material-ui/icons';
-import Features from './features/Features';
-import RackDevices from './rack-devices/RackDevices';
+import SelectFeature from './SelectFeature';
+import RequirementsHoc from './RequirementsHoc';
 import RequirementsUtils from '../utils/RequirementsUtils';
 import CostsUtils from '../utils/CostsUtils';
 import Configuration from '../models/Configuration';
@@ -35,10 +35,10 @@ class App extends Component {
 
         this.state = {
             selectedFeatures: [],
-            featureRequirements: {},
-            featureOptimalCosts: {},
-            featureCosts: {},
-            selectedDrawerItem: DrawerItems.Features,
+            requirements: {},
+            optimalCosts: {},
+            costs: {},
+            includeHosting: false,
         };
     }
 
@@ -48,25 +48,25 @@ class App extends Component {
 
         this.setState({
             selectedFeatures: features,
-            featureRequirements: requirements,
-            featureOptimalCosts: optimalCosts,
-            featureCosts: optimalCosts,
+            requirements,
+            optimalCosts,
+            costs: optimalCosts,
         });
     };
 
     handleDrawerItemChange = item => {
-        this.setState({
-            selectedDrawerItem: item,
-        });
+        if (item !== DrawerItems.RackDevices) {
+            return;
+        }
+
+        this.setState(prevState => ({
+            includeHosting: !prevState.includeHosting,
+        }));
     };
 
     handleCostChange = (key, value) => {
         this.setState(prevState => ({
-            featureCosts: CostsUtils.updateCosts(
-                prevState.featureOptimalCosts,
-                key,
-                value
-            ),
+            costs: CostsUtils.updateCosts(prevState.optimalCosts, key, value),
         }));
     };
 
@@ -74,9 +74,9 @@ class App extends Component {
         const { classes } = this.props;
         const {
             selectedFeatures,
-            featureRequirements,
-            featureCosts,
-            selectedDrawerItem,
+            requirements,
+            costs,
+            includeHosting,
         } = this.state;
 
         return (
@@ -118,7 +118,10 @@ class App extends Component {
                                     <ListItem
                                         button
                                         key={item.name}
-                                        selected={selectedDrawerItem === item}
+                                        selected={
+                                            item === DrawerItems.Features ||
+                                            includeHosting
+                                        }
                                         onClick={() =>
                                             this.handleDrawerItemChange(item)
                                         }
@@ -135,19 +138,16 @@ class App extends Component {
                 </Drawer>
 
                 <main className={classes.main}>
-                    {selectedDrawerItem === DrawerItems.Features && (
-                        <Features
-                            selectedFeatures={selectedFeatures}
-                            requirements={featureRequirements}
-                            costs={featureCosts}
-                            onFeatureChange={this.handleFeatureChange}
-                            onCostChange={this.handleCostChange}
-                        />
-                    )}
+                    <SelectFeature
+                        selectedFeatures={selectedFeatures}
+                        onChange={this.handleFeatureChange}
+                    />
 
-                    {selectedDrawerItem === DrawerItems.RackDevices && (
-                        <RackDevices foo={{}} />
-                    )}
+                    <RequirementsHoc
+                        requirements={requirements}
+                        costs={costs}
+                        onCostChange={this.handleCostChange}
+                    />
                 </main>
             </Fragment>
         );
