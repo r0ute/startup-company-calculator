@@ -10,11 +10,11 @@ import {
     withStyles,
 } from '@material-ui/core';
 import Select from 'react-select';
-import { Features } from '../models/Features';
+import { Features } from '../../models/Features';
 import PropTypes from 'prop-types';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import classNames from 'classnames';
-import Enums from '../models/Enums';
+import Enums from '../../models/Enums';
 
 const NoOptionsMessage = props => {
     return (
