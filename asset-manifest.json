@@ -1,6 +1,6 @@
 {
-  "main.js": "/startup-company-calculator/static/js/main.a1961dd6.chunk.js",
-  "main.js.map": "/startup-company-calculator/static/js/main.a1961dd6.chunk.js.map",
+  "main.js": "/startup-company-calculator/static/js/main.aa9392c9.chunk.js",
+  "main.js.map": "/startup-company-calculator/static/js/main.aa9392c9.chunk.js.map",
   "static/js/1.107485a4.chunk.js": "/startup-company-calculator/static/js/1.107485a4.chunk.js",
   "static/js/1.107485a4.chunk.js.map": "/startup-company-calculator/static/js/1.107485a4.chunk.js.map",
   "runtime~main.js": "/startup-company-calculator/static/js/runtime~main.89512a52.js",
@@ -12,6 +12,6 @@
   "static/media/processmanagement.png": "/startup-company-calculator/static/media/processmanagement.3acbe702.png",
   "static/media/cluster.png": "/startup-company-calculator/static/media/cluster.24fa68a5.png",
   "index.html": "/startup-company-calculator/index.html",
-  "precache-manifest.18a711ac3ef56b04b03fbe3006677fda.js": "/startup-company-calculator/precache-manifest.18a711ac3ef56b04b03fbe3006677fda.js",
+  "precache-manifest.4168730c2a62c4e5206509f6b4a46fc8.js": "/startup-company-calculator/precache-manifest.4168730c2a62c4e5206509f6b4a46fc8.js",
   "service-worker.js": "/startup-company-calculator/service-worker.js"
 }

@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "a1961dd678c06a44cb85",
-    "url": "/startup-company-calculator/static/js/main.a1961dd6.chunk.js"
+    "revision": "aa9392c98ffa5006f497",
+    "url": "/startup-company-calculator/static/js/main.aa9392c9.chunk.js"
   },
   {
     "revision": "107485a4c0785762b4bd",
@@ -36,7 +36,7 @@ self.__precacheManifest = [
     "url": "/startup-company-calculator/static/media/cluster.24fa68a5.png"
   },
   {
-    "revision": "0f905a5d1979bb144822002a3bb8430d",
+    "revision": "19f59af0620310da66f47ef1f58fd6cd",
     "url": "/startup-company-calculator/index.html"
   }
 ];
