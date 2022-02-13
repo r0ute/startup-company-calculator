@@ -111,7 +111,7 @@ class App extends Component {
                 >
                     <Toolbar />
                     <div className={classes.drawerContainer}>
-                        <List>
+                        <List className={classes.list}>
                             {Object.keys(DrawerItems)
                                 .map(key => DrawerItems[key])
                                 .map(item => (
@@ -163,7 +163,8 @@ const styles = theme => ({
         zIndex: theme.zIndex.drawer + 1,
     },
     icon: {
-        marginRight: theme.spacing.unit * 2,
+        marginLeft: -theme.spacing.unit * 1.5,
+        marginRight: theme.spacing.unit * 3.5,
     },
     title: {
         color: 'inherit',
@@ -193,6 +194,9 @@ const styles = theme => ({
     },
     drawerContainer: {
         overflow: 'auto',
+    },
+    list: {
+        marginTop: theme.spacing.unit * 0.75,
     },
     main: {
         margin: theme.spacing.unit * 2,
