@@ -7,7 +7,6 @@ import {
     List,
     ListItem,
     ListItemIcon,
-    ListItemText,
     Toolbar,
     Typography,
     withStyles,
@@ -18,18 +17,16 @@ import RequirementsUtils from '../utils/RequirementsUtils';
 import CostsUtils from '../utils/CostsUtils';
 import Configuration from '../models/Configuration';
 
-const DrawerItems = [
-    {
-        id: 'Features',
+const DrawerItems = {
+    Feautures: {
         name: 'Features',
         faIcon: 'fa-bullhorn',
     },
-    {
-        id: 'RackDevices',
+    RackDevices: {
         name: 'Hosting',
         faIcon: 'fa-server',
     },
-];
+};
 
 class App extends Component {
     constructor(props) {
@@ -40,6 +37,7 @@ class App extends Component {
             featureRequirements: {},
             featureOptimalCosts: {},
             featureCosts: {},
+            selectedDrawerItem: DrawerItems.Feautures,
         };
     }
 
@@ -71,6 +69,7 @@ class App extends Component {
             selectedFeatures,
             featureRequirements,
             featureCosts,
+            selectedDrawerItem,
         } = this.state;
 
         return (
@@ -106,12 +105,19 @@ class App extends Component {
                     <Toolbar />
                     <div className={classes.drawerContainer}>
                         <List>
-                            {DrawerItems.map(item => (
-                                <ListItem button key={item.id}>
+                            {Object.keys(DrawerItems).map(key => (
+                                <ListItem
+                                    button
+                                    key={key}
+                                    selected={
+                                        selectedDrawerItem === DrawerItems[key]
+                                    }
+                                >
                                     <ListItemIcon>
-                                        <i className={`fa ${item.faIcon}`}></i>
+                                        <i
+                                            className={`fa ${DrawerItems[key].faIcon}`}
+                                        ></i>
                                     </ListItemIcon>
-                                    <ListItemText primary={item.name} />
                                 </ListItem>
                             ))}
                         </List>
@@ -162,19 +168,19 @@ const styles = theme => ({
         },
     },
     drawer: {
-        width: theme.spacing.unit * 24,
+        width: theme.spacing.unit * 6,
         flexShrink: 0,
         overflowX: 'hidden',
     },
     drawerPaper: {
-        width: theme.spacing.unit * 24,
+        width: theme.spacing.unit * 6,
     },
     drawerContainer: {
         overflow: 'auto',
     },
     main: {
         margin: theme.spacing.unit * 2,
-        marginLeft: theme.spacing.unit * 26,
+        marginLeft: theme.spacing.unit * 8,
     },
 });
 
