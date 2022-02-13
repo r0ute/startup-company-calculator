@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import {
     AppBar,
     CssBaseline,
+    Drawer,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
     Toolbar,
     Typography,
     withStyles,
@@ -12,6 +17,19 @@ import Features from './features/Features';
 import RequirementsUtils from '../utils/RequirementsUtils';
 import CostsUtils from '../utils/CostsUtils';
 import Configuration from '../models/Configuration';
+
+const DrawerItems = [
+    {
+        id: 'Features',
+        name: 'Features',
+        faIcon: 'fa-bullhorn',
+    },
+    {
+        id: 'RackDevices',
+        name: 'Hosting',
+        faIcon: 'fa-server',
+    },
+];
 
 class App extends Component {
     constructor(props) {
@@ -59,7 +77,7 @@ class App extends Component {
             <Fragment>
                 <CssBaseline />
 
-                <AppBar position="static" className={classes.appBar}>
+                <AppBar position="sticky" className={classes.appBar}>
                     <Toolbar>
                         <AppIcon className={classes.icon} />
                         <Typography
@@ -77,6 +95,28 @@ class App extends Component {
                         </div>
                     </Toolbar>
                 </AppBar>
+
+                <Drawer
+                    className={classes.drawer}
+                    variant="permanent"
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                >
+                    <Toolbar />
+                    <div className={classes.drawerContainer}>
+                        <List>
+                            {DrawerItems.map(item => (
+                                <ListItem button key={item.id}>
+                                    <ListItemIcon>
+                                        <i className={`fa ${item.faIcon}`}></i>
+                                    </ListItemIcon>
+                                    <ListItemText primary={item.name} />
+                                </ListItem>
+                            ))}
+                        </List>
+                    </div>
+                </Drawer>
 
                 <main className={classes.main}>
                     <Features
@@ -98,7 +138,7 @@ App.propTypes = {
 
 const styles = theme => ({
     appBar: {
-        position: 'relative',
+        zIndex: theme.zIndex.drawer + 1,
     },
     icon: {
         marginRight: theme.spacing.unit * 2,
@@ -121,8 +161,20 @@ const styles = theme => ({
             width: 'auto',
         },
     },
+    drawer: {
+        width: theme.spacing.unit * 24,
+        flexShrink: 0,
+        overflowX: 'hidden',
+    },
+    drawerPaper: {
+        width: theme.spacing.unit * 24,
+    },
+    drawerContainer: {
+        overflow: 'auto',
+    },
     main: {
         margin: theme.spacing.unit * 2,
+        marginLeft: theme.spacing.unit * 26,
     },
 });
 
