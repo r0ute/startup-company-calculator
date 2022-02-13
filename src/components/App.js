@@ -19,9 +19,9 @@ class App extends Component {
 
         this.state = {
             selectedFeatures: [],
-            requirements: {},
-            optimalCosts: {},
-            costs: {},
+            featureRequirements: {},
+            featureOptimalCosts: {},
+            featureCosts: {},
         };
     }
 
@@ -31,21 +31,29 @@ class App extends Component {
 
         this.setState({
             selectedFeatures: features,
-            requirements,
-            optimalCosts,
-            costs: optimalCosts,
+            featureRequirements: requirements,
+            featureOptimalCosts: optimalCosts,
+            featureCosts: optimalCosts,
         });
     };
 
     handleCostChange = (key, value) => {
         this.setState(prevState => ({
-            costs: CostsUtils.updateCosts(prevState.optimalCosts, key, value),
+            featureCosts: CostsUtils.updateCosts(
+                prevState.featureOptimalCosts,
+                key,
+                value
+            ),
         }));
     };
 
     render() {
         const { classes } = this.props;
-        const { selectedFeatures, requirements, costs } = this.state;
+        const {
+            selectedFeatures,
+            featureRequirements,
+            featureCosts,
+        } = this.state;
 
         return (
             <Fragment>
@@ -73,8 +81,8 @@ class App extends Component {
                 <main className={classes.main}>
                     <Features
                         selectedFeatures={selectedFeatures}
-                        requirements={requirements}
-                        costs={costs}
+                        requirements={featureRequirements}
+                        costs={featureCosts}
                         onFeatureChange={this.handleFeatureChange}
                         onCostChange={this.handleCostChange}
                     />

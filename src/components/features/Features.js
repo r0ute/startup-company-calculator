@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 import SelectFeature from './SelectFeature';
-import RequirementsHoc from './FeatureRequirementsHoc';
+import FeatureRequirementsHoc from './FeatureRequirementsHoc';
 
 class Features extends Component {
     render() {
@@ -22,7 +22,7 @@ class Features extends Component {
                     onChange={onFeatureChange}
                 />
 
-                <RequirementsHoc
+                <FeatureRequirementsHoc
                     requirements={requirements}
                     costs={costs}
                     onCostChange={onCostChange}
@@ -33,7 +33,7 @@ class Features extends Component {
 }
 
 Features.propTypes = {
-    selectedFeatures: PropTypes.object.isRequired,
+    selectedFeatures: PropTypes.array.isRequired,
     requirements: PropTypes.object.isRequired,
     costs: PropTypes.object.isRequired,
     onFeatureChange: PropTypes.func.isRequired,
