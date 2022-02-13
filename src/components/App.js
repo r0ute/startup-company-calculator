@@ -13,12 +13,13 @@ import {
 } from '@material-ui/core';
 import { MoneyOff as AppIcon } from '@material-ui/icons';
 import Features from './features/Features';
+import RackDevices from './rack-devices/RackDevices';
 import RequirementsUtils from '../utils/RequirementsUtils';
 import CostsUtils from '../utils/CostsUtils';
 import Configuration from '../models/Configuration';
 
 const DrawerItems = {
-    Feautures: {
+    Features: {
         name: 'Features',
         faIcon: 'fa-bullhorn',
     },
@@ -37,7 +38,7 @@ class App extends Component {
             featureRequirements: {},
             featureOptimalCosts: {},
             featureCosts: {},
-            selectedDrawerItem: DrawerItems.Feautures,
+            selectedDrawerItem: DrawerItems.Features,
         };
     }
 
@@ -50,6 +51,12 @@ class App extends Component {
             featureRequirements: requirements,
             featureOptimalCosts: optimalCosts,
             featureCosts: optimalCosts,
+        });
+    };
+
+    handleDrawerItemChange = item => {
+        this.setState({
+            selectedDrawerItem: item,
         });
     };
 
@@ -105,33 +112,42 @@ class App extends Component {
                     <Toolbar />
                     <div className={classes.drawerContainer}>
                         <List>
-                            {Object.keys(DrawerItems).map(key => (
-                                <ListItem
-                                    button
-                                    key={key}
-                                    selected={
-                                        selectedDrawerItem === DrawerItems[key]
-                                    }
-                                >
-                                    <ListItemIcon>
-                                        <i
-                                            className={`fa ${DrawerItems[key].faIcon}`}
-                                        ></i>
-                                    </ListItemIcon>
-                                </ListItem>
-                            ))}
+                            {Object.keys(DrawerItems)
+                                .map(key => DrawerItems[key])
+                                .map(item => (
+                                    <ListItem
+                                        button
+                                        key={item.name}
+                                        selected={selectedDrawerItem === item}
+                                        onClick={() =>
+                                            this.handleDrawerItemChange(item)
+                                        }
+                                    >
+                                        <ListItemIcon>
+                                            <i
+                                                className={`fa ${item.faIcon}`}
+                                            ></i>
+                                        </ListItemIcon>
+                                    </ListItem>
+                                ))}
                         </List>
                     </div>
                 </Drawer>
 
                 <main className={classes.main}>
-                    <Features
-                        selectedFeatures={selectedFeatures}
-                        requirements={featureRequirements}
-                        costs={featureCosts}
-                        onFeatureChange={this.handleFeatureChange}
-                        onCostChange={this.handleCostChange}
-                    />
+                    {selectedDrawerItem === DrawerItems.Features && (
+                        <Features
+                            selectedFeatures={selectedFeatures}
+                            requirements={featureRequirements}
+                            costs={featureCosts}
+                            onFeatureChange={this.handleFeatureChange}
+                            onCostChange={this.handleCostChange}
+                        />
+                    )}
+
+                    {selectedDrawerItem === DrawerItems.RackDevices && (
+                        <RackDevices foo={{}} />
+                    )}
                 </main>
             </Fragment>
         );

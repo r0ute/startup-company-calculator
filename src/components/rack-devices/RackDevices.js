@@ -8,15 +8,12 @@ class RackDevices extends Component {
     render() {
         return (
             <Fragment>
-                <SelectRackDevice
-                    selectedFeatures={[]}
-                    onChange={this.handleFeatureChange}
-                />
+                <SelectRackDevice selectedFeatures={[]} onChange={() => {}} />
 
                 <RackDeviceRequirementsHoc
                     requirements={[]}
                     costs={[]}
-                    onCostChange={this.handleCostChange}
+                    onCostChange={() => {}}
                 />
             </Fragment>
         );

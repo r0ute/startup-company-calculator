@@ -199,7 +199,7 @@ class SelectRackDevice extends Component {
                         left.label.localeCompare(right.label)
                     )}
                 onChange={this.handleFeatureChange}
-                placeholder="Add Feature..."
+                placeholder="Add Rack Device..."
                 isMulti
             />
         );
