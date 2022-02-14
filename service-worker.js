@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/startup-company-calculator/precache-manifest.2c3de77fbc022aaf5b2ed248d81269b0.js"
+  "/startup-company-calculator/precache-manifest.b7fe63632c4b3ef66c9db92daaab529b.js"
 );
 
 workbox.clientsClaim();

@@ -1,8 +1,8 @@
 {
-  "main.js": "/startup-company-calculator/static/js/main.32cd5ff2.chunk.js",
-  "main.js.map": "/startup-company-calculator/static/js/main.32cd5ff2.chunk.js.map",
-  "static/js/1.81eb1130.chunk.js": "/startup-company-calculator/static/js/1.81eb1130.chunk.js",
-  "static/js/1.81eb1130.chunk.js.map": "/startup-company-calculator/static/js/1.81eb1130.chunk.js.map",
+  "main.js": "/startup-company-calculator/static/js/main.4feaff48.chunk.js",
+  "main.js.map": "/startup-company-calculator/static/js/main.4feaff48.chunk.js.map",
+  "static/js/1.259ecfa8.chunk.js": "/startup-company-calculator/static/js/1.259ecfa8.chunk.js",
+  "static/js/1.259ecfa8.chunk.js.map": "/startup-company-calculator/static/js/1.259ecfa8.chunk.js.map",
   "runtime~main.js": "/startup-company-calculator/static/js/runtime~main.89512a52.js",
   "runtime~main.js.map": "/startup-company-calculator/static/js/runtime~main.89512a52.js.map",
   "static/media/backend.png": "/startup-company-calculator/static/media/backend.fababe14.png",
@@ -12,6 +12,6 @@
   "static/media/processmanagement.png": "/startup-company-calculator/static/media/processmanagement.3acbe702.png",
   "static/media/cluster.png": "/startup-company-calculator/static/media/cluster.24fa68a5.png",
   "index.html": "/startup-company-calculator/index.html",
-  "precache-manifest.2c3de77fbc022aaf5b2ed248d81269b0.js": "/startup-company-calculator/precache-manifest.2c3de77fbc022aaf5b2ed248d81269b0.js",
+  "precache-manifest.b7fe63632c4b3ef66c9db92daaab529b.js": "/startup-company-calculator/precache-manifest.b7fe63632c4b3ef66c9db92daaab529b.js",
   "service-worker.js": "/startup-company-calculator/service-worker.js"
 }
