@@ -6,24 +6,14 @@ class RequirementsUtils {
         rackDevices = []
     ) => {
         console.debug('features', features, 'devices', rackDevices);
-        return features.reduce(
-            (requirements, feature) => {
-                RequirementsUtils._getComponentRequirements(
-                    feature.requirements,
-                    requirements
-                );
+        return [...features, ...rackDevices].reduce((result, val) => {
+            RequirementsUtils._getComponentRequirements(
+                val.requirements,
+                result
+            );
 
-                return requirements;
-            },
-            rackDevices.reduce((requirements, device) => {
-                RequirementsUtils._getComponentRequirements(
-                    device.requirements,
-                    requirements
-                );
-
-                return requirements;
-            }, {})
-        );
+            return result;
+        }, {});
     };
 
     static _getComponentRequirements(

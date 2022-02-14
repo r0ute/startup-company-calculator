@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import {
     AppBar,
     CssBaseline,
-    Drawer,
-    List,
-    ListItem,
-    ListItemIcon,
     Toolbar,
     Typography,
     withStyles,
@@ -21,17 +17,6 @@ import Enums from '../models/Enums';
 import { Features } from '../models/Features';
 import { RackDevices } from '../models/RackDevices';
 
-const DrawerItems = {
-    Features: {
-        name: 'Features',
-        faIcon: 'fa-bullhorn',
-    },
-    RackDevices: {
-        name: 'Hosting',
-        faIcon: 'fa-server',
-    },
-};
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -42,18 +27,17 @@ class App extends Component {
             requirements: {},
             optimalCosts: {},
             costs: {},
-            includeHosting: true,
         };
     }
 
     _updateRequirements = (features, devices) => {
         this.setState(prevState => {
             const requirements = RequirementsUtils.getFromFeaturesAndRackDevices(
-                features || prevState.features,
-                prevState.includeHosting
-                    ? devices || prevState.selectedRackDevices
-                    : undefined
+                features || prevState.selectedFeatures,
+                devices || prevState.selectedRackDevices
             );
+
+            console.log('requirements', requirements);
 
             const optimalCosts = CostsUtils.getOptimalCosts(requirements);
 
@@ -83,16 +67,6 @@ class App extends Component {
         this._updateRequirements(undefined, devices);
     };
 
-    handleDrawerItemChange = item => {
-        if (item !== DrawerItems.RackDevices) {
-            return;
-        }
-
-        this.setState(prevState => ({
-            includeHosting: !prevState.includeHosting,
-        }));
-    };
-
     handleCostChange = (key, value) => {
         this.setState(prevState => ({
             costs: CostsUtils.updateCosts(prevState.optimalCosts, key, value),
@@ -106,7 +80,6 @@ class App extends Component {
             selectedRackDevices,
             requirements,
             costs,
-            includeHosting,
         } = this.state;
 
         return (
@@ -132,41 +105,6 @@ class App extends Component {
                     </Toolbar>
                 </AppBar>
 
-                <Drawer
-                    className={classes.drawer}
-                    variant="permanent"
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}
-                >
-                    <Toolbar />
-                    <div className={classes.drawerContainer}>
-                        <List className={classes.list}>
-                            {Object.keys(DrawerItems)
-                                .map(key => DrawerItems[key])
-                                .map(item => (
-                                    <ListItem
-                                        button
-                                        key={item.name}
-                                        selected={
-                                            item === DrawerItems.Features ||
-                                            includeHosting
-                                        }
-                                        onClick={() =>
-                                            this.handleDrawerItemChange(item)
-                                        }
-                                    >
-                                        <ListItemIcon>
-                                            <i
-                                                className={`fa ${item.faIcon}`}
-                                            ></i>
-                                        </ListItemIcon>
-                                    </ListItem>
-                                ))}
-                        </List>
-                    </div>
-                </Drawer>
-
                 <main className={classes.main}>
                     <Select
                         allItems={Features.filter(feature =>
@@ -176,20 +114,20 @@ class App extends Component {
                             ].includes(feature.categoryName)
                         )}
                         selectedItems={selectedFeatures}
+                        faIcon="fa-bullhorn"
                         placeholder="Add Feature..."
                         onChange={this.handleFeatureChange}
                     />
 
-                    {includeHosting && (
-                        <Select
-                            allItems={Object.keys(RackDevices).map(
-                                key => RackDevices[key]
-                            )}
-                            selectedItems={selectedRackDevices}
-                            placeholder="Add Rack Device..."
-                            onChange={this.handleRackDeviceChange}
-                        />
-                    )}
+                    <Select
+                        allItems={Object.keys(RackDevices).map(
+                            key => RackDevices[key]
+                        )}
+                        selectedItems={selectedRackDevices}
+                        faIcon="fa-server"
+                        placeholder="Add Rack Device..."
+                        onChange={this.handleRackDeviceChange}
+                    />
 
                     <RequirementsHoc
                         requirements={requirements}
@@ -232,23 +170,8 @@ const styles = theme => ({
             width: 'auto',
         },
     },
-    drawer: {
-        width: theme.spacing.unit * 6,
-        flexShrink: 0,
-        overflowX: 'hidden',
-    },
-    drawerPaper: {
-        width: theme.spacing.unit * 6,
-    },
-    drawerContainer: {
-        overflow: 'auto',
-    },
-    list: {
-        marginTop: theme.spacing.unit * 0.75,
-    },
     main: {
         margin: theme.spacing.unit * 2,
-        marginLeft: theme.spacing.unit * 8,
     },
 });
 

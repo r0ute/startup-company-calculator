@@ -109,6 +109,7 @@ const MultiValue = props => {
     return (
         <Chip
             tabIndex={-1}
+            clickable={true}
             label={props.children}
             className={classNames(props.selectProps.classes.chip, {
                 [props.selectProps.classes.chipFocused]: props.isFocused,
@@ -164,39 +165,50 @@ class Select extends Component {
     };
 
     render() {
-        const { classes, selectedItems, placeholder, allItems } = this.props;
+        const {
+            classes,
+            selectedItems,
+            placeholder,
+            allItems,
+            faIcon,
+        } = this.props;
 
         return (
-            <ReactSelect
-                classes={classes}
-                className={classes.root}
-                components={components}
-                textFieldProps={{
-                    InputLabelProps: {
-                        shrink: true,
-                    },
-                }}
-                options={allItems
-                    .filter(item => !selectedItems.includes(item))
-                    .map(item => ({
-                        value: item.name,
-                        label: item.name,
-                    }))
-                    .sort((left, right) =>
-                        left.label.localeCompare(right.label)
-                    )}
-                value={selectedItems
-                    .map(item => ({
-                        value: item.name,
-                        label: item.name,
-                    }))
-                    .sort((left, right) =>
-                        left.label.localeCompare(right.label)
-                    )}
-                onChange={this.handleChange}
-                placeholder={placeholder}
-                isMulti
-            />
+            <div className={classes.root}>
+                <ListItemIcon className={classes.label}>
+                    <i className={`fa ${faIcon} `}></i>
+                </ListItemIcon>
+
+                <ReactSelect
+                    classes={classes}
+                    components={components}
+                    textFieldProps={{
+                        InputLabelProps: {
+                            shrink: true,
+                        },
+                    }}
+                    options={allItems
+                        .filter(item => !selectedItems.includes(item))
+                        .map(item => ({
+                            value: item.name,
+                            label: item.name,
+                        }))
+                        .sort((left, right) =>
+                            left.label.localeCompare(right.label)
+                        )}
+                    value={selectedItems
+                        .map(item => ({
+                            value: item.name,
+                            label: item.name,
+                        }))
+                        .sort((left, right) =>
+                            left.label.localeCompare(right.label)
+                        )}
+                    onChange={this.handleChange}
+                    placeholder={placeholder}
+                    isMulti
+                />
+            </div>
         );
     }
 }
@@ -204,6 +216,7 @@ class Select extends Component {
 Select.propTypes = {
     allItems: PropTypes.array.isRequired,
     selectedItems: PropTypes.array.isRequired,
+    faIcon: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
 };
@@ -216,6 +229,9 @@ const styles = theme => ({
     input: {
         display: 'flex',
         padding: 0,
+    },
+    label: {
+        marginBottom: theme.spacing.unit * 0.5,
     },
     valueContainer: {
         display: 'flex',
