@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
     AppBar,
     CssBaseline,
+    List,
     Toolbar,
     Typography,
     withStyles,
@@ -104,28 +105,30 @@ class App extends Component {
                 </AppBar>
 
                 <main className={classes.main}>
-                    <Select
-                        allItems={Features.filter(feature =>
-                            [
-                                Enums.FeatureCategories.Users,
-                                Enums.FeatureCategories.Enhancement,
-                            ].includes(feature.categoryName)
-                        )}
-                        selectedItems={selectedFeatures}
-                        faIcon="fa-bullhorn"
-                        placeholder="Add Feature..."
-                        onChange={this.handleFeatureChange}
-                    />
+                    <List>
+                        <Select
+                            allItems={Features.filter(feature =>
+                                [
+                                    Enums.FeatureCategories.Users,
+                                    Enums.FeatureCategories.Enhancement,
+                                ].includes(feature.categoryName)
+                            )}
+                            selectedItems={selectedFeatures}
+                            faIcon="fa-bullhorn"
+                            placeholder="Add Feature..."
+                            onChange={this.handleFeatureChange}
+                        />
 
-                    <Select
-                        allItems={Object.keys(RackDevices).map(
-                            key => RackDevices[key]
-                        )}
-                        selectedItems={selectedRackDevices}
-                        faIcon="fa-server"
-                        placeholder="Add Rack Device..."
-                        onChange={this.handleRackDeviceChange}
-                    />
+                        <Select
+                            allItems={Object.keys(RackDevices).map(
+                                key => RackDevices[key]
+                            )}
+                            selectedItems={selectedRackDevices}
+                            faIcon="fa-server"
+                            placeholder="Add Rack Device..."
+                            onChange={this.handleRackDeviceChange}
+                        />
+                    </List>
 
                     <RequirementsHoc
                         requirements={requirements}
@@ -147,8 +150,7 @@ const styles = theme => ({
         zIndex: theme.zIndex.drawer + 1,
     },
     icon: {
-        marginLeft: -theme.spacing.unit * 1.5,
-        marginRight: theme.spacing.unit * 3.5,
+        marginRight: theme.spacing.unit * 4,
     },
     title: {
         color: 'inherit',

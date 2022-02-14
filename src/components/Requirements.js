@@ -109,15 +109,17 @@ class Requirements extends Component {
                             </TableRow>
                         ))}
 
-                        <TableRow>
-                            <TableCell colSpan={4}>
-                                <StaffRatio
-                                    requirements={requirements}
-                                    costs={costs}
-                                    onCostChange={onCostChange}
-                                />
-                            </TableCell>
-                        </TableRow>
+                        {Object.keys(costs).length > 1 && (
+                            <TableRow>
+                                <TableCell colSpan={4}>
+                                    <StaffRatio
+                                        requirements={requirements}
+                                        costs={costs}
+                                        onCostChange={onCostChange}
+                                    />
+                                </TableCell>
+                            </TableRow>
+                        )}
                     </TableBody>
                 </Table>
             </Paper>

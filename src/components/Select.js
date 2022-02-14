@@ -3,7 +3,9 @@ import {
     Avatar,
     Chip,
     MenuItem,
+    ListItem,
     ListItemIcon,
+    ListItemText,
     Paper,
     TextField,
     Typography,
@@ -173,41 +175,46 @@ class Select extends Component {
         } = this.props;
 
         return (
-            <div className={classes.root}>
-                <ListItemIcon className={classes.label}>
-                    <i className={`fa ${faIcon} `}></i>
-                </ListItemIcon>
-
-                <ReactSelect
-                    classes={classes}
-                    components={components}
-                    textFieldProps={{
-                        InputLabelProps: {
-                            shrink: true,
-                        },
-                    }}
-                    options={allItems
-                        .filter(item => !selectedItems.includes(item))
-                        .map(item => ({
-                            value: item.name,
-                            label: item.name,
-                        }))
-                        .sort((left, right) =>
-                            left.label.localeCompare(right.label)
-                        )}
-                    value={selectedItems
-                        .map(item => ({
-                            value: item.name,
-                            label: item.name,
-                        }))
-                        .sort((left, right) =>
-                            left.label.localeCompare(right.label)
-                        )}
-                    onChange={this.handleChange}
-                    placeholder={placeholder}
-                    isMulti
+            <ListItem className={classes.root}>
+                <ListItemText
+                    primary={
+                        <ListItemIcon className={classes.label}>
+                            <i className={`fa ${faIcon} `}></i>
+                        </ListItemIcon>
+                    }
+                    secondary={
+                        <ReactSelect
+                            classes={classes}
+                            components={components}
+                            textFieldProps={{
+                                InputLabelProps: {
+                                    shrink: true,
+                                },
+                            }}
+                            options={allItems
+                                .filter(item => !selectedItems.includes(item))
+                                .map(item => ({
+                                    value: item.name,
+                                    label: item.name,
+                                }))
+                                .sort((left, right) =>
+                                    left.label.localeCompare(right.label)
+                                )}
+                            value={selectedItems
+                                .map(item => ({
+                                    value: item.name,
+                                    label: item.name,
+                                }))
+                                .sort((left, right) =>
+                                    left.label.localeCompare(right.label)
+                                )}
+                            onChange={this.handleChange}
+                            placeholder={placeholder}
+                            isMulti
+                        />
+                    }
                 />
-            </div>
+            </ListItem>
         );
     }
 }
@@ -223,14 +230,10 @@ Select.propTypes = {
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        marginBottom: theme.spacing.unit * 2,
     },
     input: {
         display: 'flex',
         padding: 0,
-    },
-    label: {
-        marginBottom: theme.spacing.unit * 0.5,
     },
     valueContainer: {
         display: 'flex',
