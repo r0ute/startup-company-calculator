@@ -1,10 +1,11 @@
 import RequirementsUtils from './RequirementsUtils';
 import { FeatureNames, Features } from '../models/Features';
+import { RackDeviceNames, RackDevices } from '../models/RackDevices';
 import { ComponentNames, Components } from '../models/Components';
 
 describe('getting requirements', () => {
     it('should get requirements: {UiComponent: 1, BackendComponent: 1, BlueprintComponent: 1, GraphicsComponent: 1} from FeatureNames.LandingPage', () => {
-        const requirements = RequirementsUtils.getFromFeatures(
+        const requirements = RequirementsUtils.getFromFeaturesAndRackDevices(
             Features.filter(feat => feat.name === FeatureNames.LandingPage)
         );
 
@@ -40,14 +41,14 @@ describe('getting requirements', () => {
         });
     });
 
-    it('should get requirements: {requirements: {BackendModule: 3, InputModule: 3} from FeatureNames.CommentFunctionality', () => {
+    it('should get requirements: {BackendModule: 3, InputModule: 3} from FeatureNames.CommentFunctionality', () => {
         // name: ComponentNames.BackendModule,
         // requirements: {BackendComponent: 1, NetworkComponent: 1}
 
         // name: ComponentNames.InputModule,
         // requirements: {UiComponent: 1, BackendComponent: 1}
 
-        const requirements = RequirementsUtils.getFromFeatures(
+        const requirements = RequirementsUtils.getFromFeaturesAndRackDevices(
             Features.filter(
                 feat => feat.name === FeatureNames.CommentFunctionality
             )
@@ -91,4 +92,148 @@ describe('getting requirements', () => {
             },
         });
     });
+
+    it('should get requirements: {Firewall: 2, VirtualHardware: 2, OperatingSystem: 2 } from RackDeviceNames.WebserverSmall', () => {
+        const requirements = RequirementsUtils.getFromFeaturesAndRackDevices([
+            RackDevices[RackDeviceNames.WebserverSmall],
+        ]);
+
+        expect(requirements).toEqual({
+            [ComponentNames.Firewall]: {
+                component: Components.find(
+                    cmp => cmp.name === ComponentNames.Firewall
+                ),
+                count: 2,
+                produceHours: 4,
+            },
+            [ComponentNames.VirtualHardware]: {
+                component: Components.find(
+                    cmp => cmp.name === ComponentNames.VirtualHardware
+                ),
+                count: 2,
+                produceHours: 4,
+            },
+            [ComponentNames.OperatingSystem]: {
+                component: Components.find(
+                    cmp => cmp.name === ComponentNames.OperatingSystem
+                ),
+                count: 2,
+                produceHours: 4,
+            },
+        });
+    });
+
+    it(
+        'should get requirements: {Firewall: 2, VirtualHardware: 2, OperatingSystem: 2 } from RackDeviceNames.WebserverSmall' +
+            ' and {Firewall: 4, VirtualHardware: 4, OperatingSystem: 4, ProcessManagement: 2, CronJob: 2 } from RackDeviceNames.WebserverMedium',
+        () => {
+            const requirements = RequirementsUtils.getFromFeaturesAndRackDevices(
+                [
+                    RackDevices[RackDeviceNames.WebserverSmall],
+                    RackDevices[RackDeviceNames.WebserverMedium],
+                ]
+            );
+
+            expect(requirements).toEqual({
+                [ComponentNames.Firewall]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.Firewall
+                    ),
+                    count: 6,
+                    produceHours: 4,
+                },
+                [ComponentNames.VirtualHardware]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.VirtualHardware
+                    ),
+                    count: 6,
+                    produceHours: 4,
+                },
+                [ComponentNames.OperatingSystem]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.OperatingSystem
+                    ),
+                    count: 6,
+                    produceHours: 4,
+                },
+                [ComponentNames.ProcessManagement]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.ProcessManagement
+                    ),
+                    count: 2,
+                    produceHours: 6,
+                },
+                [ComponentNames.CronJob]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.CronJob
+                    ),
+                    count: 2,
+                    produceHours: 3,
+                },
+            });
+        }
+    );
+
+    it(
+        'should get requirements: {UiComponent: 1, BackendComponent: 1, BlueprintComponent: 1, GraphicsComponent: 1} from FeatureNames.LandingPage' +
+            ' and {Firewall: 2, VirtualHardware: 2, OperatingSystem: 2 } from RackDeviceNames.WebserverSmall',
+        () => {
+            const requirements = RequirementsUtils.getFromFeaturesAndRackDevices(
+                Features.filter(feat => feat.name === FeatureNames.LandingPage),
+                [RackDevices[RackDeviceNames.WebserverSmall]]
+            );
+
+            expect(requirements).toEqual({
+                [ComponentNames.UiComponent]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.UiComponent
+                    ),
+                    count: 1,
+                    produceHours: 2,
+                },
+                [ComponentNames.BackendComponent]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.BackendComponent
+                    ),
+                    count: 1,
+                    produceHours: 4,
+                },
+                [ComponentNames.BlueprintComponent]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.BlueprintComponent
+                    ),
+                    count: 1,
+                    produceHours: 2,
+                },
+                [ComponentNames.GraphicsComponent]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.GraphicsComponent
+                    ),
+                    count: 1,
+                    produceHours: 4,
+                },
+                [ComponentNames.Firewall]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.Firewall
+                    ),
+                    count: 2,
+                    produceHours: 4,
+                },
+                [ComponentNames.VirtualHardware]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.VirtualHardware
+                    ),
+                    count: 2,
+                    produceHours: 4,
+                },
+                [ComponentNames.OperatingSystem]: {
+                    component: Components.find(
+                        cmp => cmp.name === ComponentNames.OperatingSystem
+                    ),
+                    count: 2,
+                    produceHours: 4,
+                },
+            });
+        }
+    );
 });

@@ -1,14 +1,17 @@
 import { Components } from '../models/Components';
 
 class RequirementsUtils {
-    static getFromFeatures = features => {
-        return features.reduce((requirements, feature) => {
+    static getFromFeaturesAndRackDevices = (
+        features = [],
+        rackDevices = []
+    ) => {
+        return [...features, ...rackDevices].reduce((result, val) => {
             RequirementsUtils._getComponentRequirements(
-                feature.requirements,
-                requirements
+                val.requirements,
+                result
             );
 
-            return requirements;
+            return result;
         }, {});
     };
 
@@ -25,15 +28,12 @@ class RequirementsUtils {
             );
 
             if (allRequirements[key]) {
-                allRequirements[key].count =
-                    allRequirements[key].count + 1 * multiplier;
+                allRequirements[key].count +=
+                    componentRequirements[key] * multiplier;
             } else {
                 allRequirements[key] = {
                     component,
-                    count:
-                        multiplier !== 1
-                            ? multiplier
-                            : componentRequirements[key],
+                    count: componentRequirements[key] * multiplier,
                 };
             }
 

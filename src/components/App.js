@@ -8,11 +8,14 @@ import {
     withStyles,
 } from '@material-ui/core';
 import { MoneyOff as AppIcon } from '@material-ui/icons';
-import SelectFeature from './SelectFeature';
+import UnitSelect from './UnitSelect';
 import RequirementsHoc from './RequirementsHoc';
 import RequirementsUtils from '../utils/RequirementsUtils';
 import CostsUtils from '../utils/CostsUtils';
 import Configuration from '../models/Configuration';
+import Enums from '../models/Enums';
+import { Features } from '../models/Features';
+import { RackDevices } from '../models/RackDevices';
 
 class App extends Component {
     constructor(props) {
@@ -20,22 +23,46 @@ class App extends Component {
 
         this.state = {
             selectedFeatures: [],
+            selectedRackDevices: [],
             requirements: {},
             optimalCosts: {},
             costs: {},
         };
     }
 
-    handleFeatureChange = features => {
-        const requirements = RequirementsUtils.getFromFeatures(features);
-        const optimalCosts = CostsUtils.getOptimalCosts(requirements);
+    _updateRequirements = (features, devices) => {
+        this.setState(prevState => {
+            const requirements = RequirementsUtils.getFromFeaturesAndRackDevices(
+                features || prevState.selectedFeatures,
+                devices || prevState.selectedRackDevices
+            );
 
-        this.setState({
-            selectedFeatures: features,
-            requirements,
-            optimalCosts,
-            costs: optimalCosts,
+            const optimalCosts = CostsUtils.getOptimalCosts(requirements);
+
+            return {
+                selectedFeatures: features || prevState.selectedFeatures,
+                selectedRackDevices: devices || prevState.selectedRackDevices,
+                requirements,
+                optimalCosts,
+                costs: optimalCosts,
+            };
         });
+    };
+
+    handleFeatureChange = items => {
+        const features = Features.filter(feature =>
+            items.includes(feature.name)
+        );
+
+        this._updateRequirements(features);
+    };
+
+    handleRackDeviceChange = items => {
+        const devices = Object.keys(RackDevices)
+            .map(key => RackDevices[key])
+            .filter(device => items.includes(device.name));
+
+        this._updateRequirements(undefined, devices);
     };
 
     handleCostChange = (key, value) => {
@@ -46,13 +73,18 @@ class App extends Component {
 
     render() {
         const { classes } = this.props;
-        const { selectedFeatures, requirements, costs } = this.state;
+        const {
+            selectedFeatures,
+            selectedRackDevices,
+            requirements,
+            costs,
+        } = this.state;
 
         return (
             <Fragment>
                 <CssBaseline />
 
-                <AppBar position="static" className={classes.appBar}>
+                <AppBar position="sticky" className={classes.appBar}>
                     <Toolbar>
                         <AppIcon className={classes.icon} />
                         <Typography
@@ -72,9 +104,27 @@ class App extends Component {
                 </AppBar>
 
                 <main className={classes.main}>
-                    <SelectFeature
-                        selectedFeatures={selectedFeatures}
+                    <UnitSelect
+                        allItems={Features.filter(feature =>
+                            [
+                                Enums.FeatureCategories.Users,
+                                Enums.FeatureCategories.Enhancement,
+                            ].includes(feature.categoryName)
+                        )}
+                        selectedItems={selectedFeatures}
+                        faIcon="fa-bullhorn"
+                        placeholder="Add Feature..."
                         onChange={this.handleFeatureChange}
+                    />
+
+                    <UnitSelect
+                        allItems={Object.keys(RackDevices).map(
+                            key => RackDevices[key]
+                        )}
+                        selectedItems={selectedRackDevices}
+                        faIcon="fa-server"
+                        placeholder="Add Rack Device..."
+                        onChange={this.handleRackDeviceChange}
                     />
 
                     <RequirementsHoc
@@ -94,7 +144,7 @@ App.propTypes = {
 
 const styles = theme => ({
     appBar: {
-        position: 'relative',
+        zIndex: theme.zIndex.drawer + 1,
     },
     icon: {
         marginRight: theme.spacing.unit * 2,

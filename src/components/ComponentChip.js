@@ -11,6 +11,8 @@ class ComponentChip extends Component {
 
         return (
             <Chip
+                tabIndex={-1}
+                clickable={false}
                 avatar={
                     <Avatar>
                         <img

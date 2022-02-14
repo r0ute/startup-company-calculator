@@ -32,6 +32,7 @@ class EmployeeChip extends Component {
 
         return (
             <Chip
+                tabIndex={-1}
                 avatar={
                     <Avatar
                         className={classNames(

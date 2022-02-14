@@ -14,7 +14,6 @@ import { Features } from '../models/Features';
 import PropTypes from 'prop-types';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import classNames from 'classnames';
-import Enums from '../models/Enums';
 
 const NoOptionsMessage = props => {
     return (
@@ -51,6 +50,8 @@ const Control = props => {
 };
 
 const Option = props => {
+    const feature = Features.find(feature => feature.name === props.value);
+
     return (
         <MenuItem
             buttonRef={props.innerRef}
@@ -61,14 +62,11 @@ const Option = props => {
             }}
             {...props.innerProps}
         >
-            <ListItemIcon>
-                <i
-                    className={`fa ${
-                        Features.find(feature => feature.name === props.value)
-                            .faIcon
-                    }`}
-                ></i>
-            </ListItemIcon>
+            {feature && (
+                <ListItemIcon>
+                    <i className={`fa ${feature.faIcon}`}></i>
+                </ListItemIcon>
+            )}
             {props.children}
         </MenuItem>
     );
@@ -106,6 +104,8 @@ const ValueContainer = props => {
 };
 
 const MultiValue = props => {
+    const feature = Features.find(feature => feature.name === props.children);
+
     return (
         <Chip
             tabIndex={-1}
@@ -114,17 +114,17 @@ const MultiValue = props => {
                 [props.selectProps.classes.chipFocused]: props.isFocused,
             })}
             avatar={
-                <Avatar>
-                    <i
-                        className={classNames(
-                            props.selectProps.classes.icon,
-                            'fa',
-                            Features.find(
-                                feature => feature.name === props.children
-                            ).faIcon
-                        )}
-                    ></i>
-                </Avatar>
+                feature && (
+                    <Avatar>
+                        <i
+                            className={classNames(
+                                props.selectProps.classes.icon,
+                                'fa',
+                                feature.faIcon
+                            )}
+                        ></i>
+                    </Avatar>
+                )
             }
             onDelete={props.removeProps.onClick}
         />
@@ -154,67 +154,81 @@ const components = {
     ValueContainer,
 };
 
-class SelectFeature extends Component {
-    allFeatures = Features.filter(feature =>
-        [
-            Enums.FeatureCategories.Users,
-            Enums.FeatureCategories.Enhancement,
-        ].includes(feature.categoryName)
-    )
-        .map(feature => ({
-            value: feature.name,
-            label: feature.name,
-        }))
-        .sort((left, right) => left.label.localeCompare(right.label));
-
-    handleFeatureChange = option => {
+class UnitSelect extends Component {
+    handleChange = option => {
         const { onChange } = this.props;
 
-        const featureIds = !option ? [] : option.map(opt => opt.value);
+        const ids = !option ? [] : option.map(opt => opt.value);
 
-        onChange(Features.filter(feature => featureIds.includes(feature.name)));
+        onChange(ids);
     };
 
     render() {
-        const { classes, selectedFeatures } = this.props;
+        const {
+            classes,
+            selectedItems,
+            placeholder,
+            allItems,
+            faIcon,
+        } = this.props;
 
         return (
-            <Select
-                classes={classes}
-                components={components}
-                textFieldProps={{
-                    InputLabelProps: {
-                        shrink: true,
-                    },
-                }}
-                options={this.allFeatures.filter(
-                    feature => !selectedFeatures.includes(feature)
-                )}
-                value={selectedFeatures
-                    .map(feature => ({
-                        value: feature.name,
-                        label: feature.name,
-                    }))
-                    .sort((left, right) =>
-                        left.label.localeCompare(right.label)
-                    )}
-                onChange={this.handleFeatureChange}
-                placeholder="Add Feature..."
-                isMulti
-            />
+            <div className={classes.root}>
+                <ListItemIcon className={classes.label}>
+                    <i className={`fa ${faIcon} `}></i>
+                </ListItemIcon>
+
+                <Select
+                    classes={classes}
+                    components={components}
+                    textFieldProps={{
+                        InputLabelProps: {
+                            shrink: true,
+                        },
+                    }}
+                    options={allItems
+                        .filter(item => !selectedItems.includes(item))
+                        .map(item => ({
+                            value: item.name,
+                            label: item.name,
+                        }))
+                        .sort((left, right) =>
+                            left.label.localeCompare(right.label)
+                        )}
+                    value={selectedItems
+                        .map(item => ({
+                            value: item.name,
+                            label: item.name,
+                        }))
+                        .sort((left, right) =>
+                            left.label.localeCompare(right.label)
+                        )}
+                    onChange={this.handleChange}
+                    placeholder={placeholder}
+                    isMulti
+                />
+            </div>
         );
     }
 }
 
-SelectFeature.propTypes = {
-    selectedFeatures: PropTypes.array.isRequired,
+UnitSelect.propTypes = {
+    allItems: PropTypes.array.isRequired,
+    selectedItems: PropTypes.array.isRequired,
+    faIcon: PropTypes.string.isRequired,
+    placeholder: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
 };
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        height: 250,
+        paddingTop: theme.spacing.unit,
+        paddingBottom: theme.spacing.unit,
+    },
+    label: {
+        padding: theme.spacing.unit * 1.5,
+        paddingBottom: theme.spacing.unit * 0.5,
     },
     input: {
         display: 'flex',
@@ -265,4 +279,4 @@ const styles = theme => ({
     },
 });
 
-export default withStyles(styles)(SelectFeature);
+export default withStyles(styles)(UnitSelect);

@@ -67,7 +67,10 @@ class Requirements extends Component {
                                     <Grid item>Prod. Time</Grid>
                                     <Grid item>
                                         <Tooltip title="How much time it takes to produce 1 unit">
-                                            <HelpIcon fontSize="small" />
+                                            <HelpIcon
+                                                className={classes.help}
+                                                fontSize="small"
+                                            />
                                         </Tooltip>
                                     </Grid>
                                 </Grid>
@@ -109,15 +112,17 @@ class Requirements extends Component {
                             </TableRow>
                         ))}
 
-                        <TableRow>
-                            <TableCell colSpan={4}>
-                                <StaffRatio
-                                    requirements={requirements}
-                                    costs={costs}
-                                    onCostChange={onCostChange}
-                                />
-                            </TableCell>
-                        </TableRow>
+                        {Object.keys(costs).length > 1 && (
+                            <TableRow>
+                                <TableCell colSpan={4}>
+                                    <StaffRatio
+                                        requirements={requirements}
+                                        costs={costs}
+                                        onCostChange={onCostChange}
+                                    />
+                                </TableCell>
+                            </TableRow>
+                        )}
                     </TableBody>
                 </Table>
             </Paper>
@@ -136,6 +141,10 @@ const styles = theme => ({
         width: '100%',
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
+    },
+    help: {
+        margin: theme.spacing.unit,
+        marginRight: 0,
     },
     table: {},
 });
