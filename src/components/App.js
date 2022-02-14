@@ -37,8 +37,6 @@ class App extends Component {
                 devices || prevState.selectedRackDevices
             );
 
-            console.log('requirements', requirements);
-
             const optimalCosts = CostsUtils.getOptimalCosts(requirements);
 
             return {

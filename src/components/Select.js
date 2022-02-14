@@ -109,7 +109,6 @@ const MultiValue = props => {
     return (
         <Chip
             tabIndex={-1}
-            clickable={true}
             label={props.children}
             className={classNames(props.selectProps.classes.chip, {
                 [props.selectProps.classes.chipFocused]: props.isFocused,

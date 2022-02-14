@@ -5,7 +5,6 @@ class RequirementsUtils {
         features = [],
         rackDevices = []
     ) => {
-        console.debug('features', features, 'devices', rackDevices);
         return [...features, ...rackDevices].reduce((result, val) => {
             RequirementsUtils._getComponentRequirements(
                 val.requirements,
