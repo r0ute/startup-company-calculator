@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import {
     AppBar,
     CssBaseline,
-    List,
     Toolbar,
     Typography,
     withStyles,
 } from '@material-ui/core';
 import { MoneyOff as AppIcon } from '@material-ui/icons';
-import Select from './Select';
+import UnitSelect from './UnitSelect';
 import RequirementsHoc from './RequirementsHoc';
 import RequirementsUtils from '../utils/RequirementsUtils';
 import CostsUtils from '../utils/CostsUtils';
@@ -105,30 +104,28 @@ class App extends Component {
                 </AppBar>
 
                 <main className={classes.main}>
-                    <List>
-                        <Select
-                            allItems={Features.filter(feature =>
-                                [
-                                    Enums.FeatureCategories.Users,
-                                    Enums.FeatureCategories.Enhancement,
-                                ].includes(feature.categoryName)
-                            )}
-                            selectedItems={selectedFeatures}
-                            faIcon="fa-bullhorn"
-                            placeholder="Add Feature..."
-                            onChange={this.handleFeatureChange}
-                        />
+                    <UnitSelect
+                        allItems={Features.filter(feature =>
+                            [
+                                Enums.FeatureCategories.Users,
+                                Enums.FeatureCategories.Enhancement,
+                            ].includes(feature.categoryName)
+                        )}
+                        selectedItems={selectedFeatures}
+                        faIcon="fa-bullhorn"
+                        placeholder="Add Feature..."
+                        onChange={this.handleFeatureChange}
+                    />
 
-                        <Select
-                            allItems={Object.keys(RackDevices).map(
-                                key => RackDevices[key]
-                            )}
-                            selectedItems={selectedRackDevices}
-                            faIcon="fa-server"
-                            placeholder="Add Rack Device..."
-                            onChange={this.handleRackDeviceChange}
-                        />
-                    </List>
+                    <UnitSelect
+                        allItems={Object.keys(RackDevices).map(
+                            key => RackDevices[key]
+                        )}
+                        selectedItems={selectedRackDevices}
+                        faIcon="fa-server"
+                        placeholder="Add Rack Device..."
+                        onChange={this.handleRackDeviceChange}
+                    />
 
                     <RequirementsHoc
                         requirements={requirements}
@@ -150,7 +147,7 @@ const styles = theme => ({
         zIndex: theme.zIndex.drawer + 1,
     },
     icon: {
-        marginRight: theme.spacing.unit * 4,
+        marginRight: theme.spacing.unit * 2,
     },
     title: {
         color: 'inherit',

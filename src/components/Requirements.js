@@ -67,7 +67,10 @@ class Requirements extends Component {
                                     <Grid item>Prod. Time</Grid>
                                     <Grid item>
                                         <Tooltip title="How much time it takes to produce 1 unit">
-                                            <HelpIcon fontSize="small" />
+                                            <HelpIcon
+                                                className={classes.help}
+                                                fontSize="small"
+                                            />
                                         </Tooltip>
                                     </Grid>
                                 </Grid>
@@ -138,6 +141,10 @@ const styles = theme => ({
         width: '100%',
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
+    },
+    help: {
+        margin: theme.spacing.unit,
+        marginRight: 0,
     },
     table: {},
 });

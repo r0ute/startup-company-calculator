@@ -3,15 +3,13 @@ import {
     Avatar,
     Chip,
     MenuItem,
-    ListItem,
     ListItemIcon,
-    ListItemText,
     Paper,
     TextField,
     Typography,
     withStyles,
 } from '@material-ui/core';
-import ReactSelect from 'react-select';
+import Select from 'react-select';
 import { Features } from '../models/Features';
 import PropTypes from 'prop-types';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
@@ -156,7 +154,7 @@ const components = {
     ValueContainer,
 };
 
-class Select extends Component {
+class UnitSelect extends Component {
     handleChange = option => {
         const { onChange } = this.props;
 
@@ -175,51 +173,46 @@ class Select extends Component {
         } = this.props;
 
         return (
-            <ListItem className={classes.root}>
-                <ListItemText
-                    primary={
-                        <ListItemIcon className={classes.label}>
-                            <i className={`fa ${faIcon} `}></i>
-                        </ListItemIcon>
-                    }
-                    secondary={
-                        <ReactSelect
-                            classes={classes}
-                            components={components}
-                            textFieldProps={{
-                                InputLabelProps: {
-                                    shrink: true,
-                                },
-                            }}
-                            options={allItems
-                                .filter(item => !selectedItems.includes(item))
-                                .map(item => ({
-                                    value: item.name,
-                                    label: item.name,
-                                }))
-                                .sort((left, right) =>
-                                    left.label.localeCompare(right.label)
-                                )}
-                            value={selectedItems
-                                .map(item => ({
-                                    value: item.name,
-                                    label: item.name,
-                                }))
-                                .sort((left, right) =>
-                                    left.label.localeCompare(right.label)
-                                )}
-                            onChange={this.handleChange}
-                            placeholder={placeholder}
-                            isMulti
-                        />
-                    }
+            <div className={classes.root}>
+                <ListItemIcon className={classes.label}>
+                    <i className={`fa ${faIcon} `}></i>
+                </ListItemIcon>
+
+                <Select
+                    classes={classes}
+                    components={components}
+                    textFieldProps={{
+                        InputLabelProps: {
+                            shrink: true,
+                        },
+                    }}
+                    options={allItems
+                        .filter(item => !selectedItems.includes(item))
+                        .map(item => ({
+                            value: item.name,
+                            label: item.name,
+                        }))
+                        .sort((left, right) =>
+                            left.label.localeCompare(right.label)
+                        )}
+                    value={selectedItems
+                        .map(item => ({
+                            value: item.name,
+                            label: item.name,
+                        }))
+                        .sort((left, right) =>
+                            left.label.localeCompare(right.label)
+                        )}
+                    onChange={this.handleChange}
+                    placeholder={placeholder}
+                    isMulti
                 />
-            </ListItem>
+            </div>
         );
     }
 }
 
-Select.propTypes = {
+UnitSelect.propTypes = {
     allItems: PropTypes.array.isRequired,
     selectedItems: PropTypes.array.isRequired,
     faIcon: PropTypes.string.isRequired,
@@ -230,6 +223,12 @@ Select.propTypes = {
 const styles = theme => ({
     root: {
         flexGrow: 1,
+        paddingTop: theme.spacing.unit,
+        paddingBottom: theme.spacing.unit,
+    },
+    label: {
+        padding: theme.spacing.unit * 1.5,
+        paddingBottom: theme.spacing.unit * 0.5,
     },
     input: {
         display: 'flex',
@@ -280,4 +279,4 @@ const styles = theme => ({
     },
 });
 
-export default withStyles(styles)(Select);
+export default withStyles(styles)(UnitSelect);
