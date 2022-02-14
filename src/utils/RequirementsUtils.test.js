@@ -4,7 +4,7 @@ import { ComponentNames, Components } from '../models/Components';
 
 describe('getting requirements', () => {
     it('should get requirements: {UiComponent: 1, BackendComponent: 1, BlueprintComponent: 1, GraphicsComponent: 1} from FeatureNames.LandingPage', () => {
-        const requirements = RequirementsUtils.getFromFeatures(
+        const requirements = RequirementsUtils.getFromFeaturesAndRackDevices(
             Features.filter(feat => feat.name === FeatureNames.LandingPage)
         );
 
@@ -47,7 +47,7 @@ describe('getting requirements', () => {
         // name: ComponentNames.InputModule,
         // requirements: {UiComponent: 1, BackendComponent: 1}
 
-        const requirements = RequirementsUtils.getFromFeatures(
+        const requirements = RequirementsUtils.getFromFeaturesAndRackDevices(
             Features.filter(
                 feat => feat.name === FeatureNames.CommentFunctionality
             )

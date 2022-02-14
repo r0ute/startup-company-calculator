@@ -38,26 +38,49 @@ class App extends Component {
 
         this.state = {
             selectedFeatures: [],
+            selectedRackDevices: [],
             requirements: {},
             optimalCosts: {},
             costs: {},
-            includeHosting: false,
+            includeHosting: true,
         };
     }
+
+    _updateRequirements = (features, devices) => {
+        this.setState(prevState => {
+            const requirements = RequirementsUtils.getFromFeaturesAndRackDevices(
+                features || prevState.features,
+                prevState.includeHosting
+                    ? devices || prevState.selectedRackDevices
+                    : undefined
+            );
+
+            const optimalCosts = CostsUtils.getOptimalCosts(requirements);
+
+            return {
+                selectedFeatures: features || prevState.selectedFeatures,
+                selectedRackDevices: devices || prevState.selectedRackDevices,
+                requirements,
+                optimalCosts,
+                costs: optimalCosts,
+            };
+        });
+    };
 
     handleFeatureChange = items => {
         const features = Features.filter(feature =>
             items.includes(feature.name)
         );
-        const requirements = RequirementsUtils.getFromFeatures(features);
-        const optimalCosts = CostsUtils.getOptimalCosts(requirements);
 
-        this.setState({
-            selectedFeatures: features,
-            requirements,
-            optimalCosts,
-            costs: optimalCosts,
-        });
+        this._updateRequirements(features);
+    };
+
+    handleRackDeviceChange = items => {
+        const devices = Object.keys(RackDevices)
+            .map(key => RackDevices[key])
+            .filter(device => items.includes(device.name));
+
+        this._updateRequirements(undefined, devices);
     };
 
     handleDrawerItemChange = item => {
@@ -80,6 +103,7 @@ class App extends Component {
         const { classes } = this.props;
         const {
             selectedFeatures,
+            selectedRackDevices,
             requirements,
             costs,
             includeHosting,
@@ -161,9 +185,9 @@ class App extends Component {
                             allItems={Object.keys(RackDevices).map(
                                 key => RackDevices[key]
                             )}
-                            selectedItems={[]}
+                            selectedItems={selectedRackDevices}
                             placeholder="Add Rack Device..."
-                            onChange={() => {}}
+                            onChange={this.handleRackDeviceChange}
                         />
                     )}
 

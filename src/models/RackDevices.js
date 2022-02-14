@@ -57,13 +57,6 @@ const RackDeviceNames = {
                 OperatingSystem: 2,
             },
         },
-        SmallRackCooler: {
-            name: RackDeviceNames.SmallRackCooler,
-            units: 1,
-            price: 2e3,
-            power: 2500,
-            producedHeat: -15,
-        },
         WebserverMedium: {
             name: RackDeviceNames.WebserverMedium,
             units: 2,

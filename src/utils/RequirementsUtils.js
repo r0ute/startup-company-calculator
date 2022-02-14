@@ -1,15 +1,29 @@
 import { Components } from '../models/Components';
 
 class RequirementsUtils {
-    static getFromFeatures = features => {
-        return features.reduce((requirements, feature) => {
-            RequirementsUtils._getComponentRequirements(
-                feature.requirements,
-                requirements
-            );
+    static getFromFeaturesAndRackDevices = (
+        features = [],
+        rackDevices = []
+    ) => {
+        console.debug('features', features, 'devices', rackDevices);
+        return features.reduce(
+            (requirements, feature) => {
+                RequirementsUtils._getComponentRequirements(
+                    feature.requirements,
+                    requirements
+                );
 
-            return requirements;
-        }, {});
+                return requirements;
+            },
+            rackDevices.reduce((requirements, device) => {
+                RequirementsUtils._getComponentRequirements(
+                    device.requirements,
+                    requirements
+                );
+
+                return requirements;
+            }, {})
+        );
     };
 
     static _getComponentRequirements(

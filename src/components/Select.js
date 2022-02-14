@@ -62,9 +62,11 @@ const Option = props => {
             }}
             {...props.innerProps}
         >
-            <ListItemIcon>
-                <i className={`fa ${feature ? feature.faIcon : ''}`}></i>
-            </ListItemIcon>
+            {feature && (
+                <ListItemIcon>
+                    <i className={`fa ${feature.faIcon}`}></i>
+                </ListItemIcon>
+            )}
             {props.children}
         </MenuItem>
     );
@@ -112,15 +114,17 @@ const MultiValue = props => {
                 [props.selectProps.classes.chipFocused]: props.isFocused,
             })}
             avatar={
-                <Avatar>
-                    <i
-                        className={classNames(
-                            props.selectProps.classes.icon,
-                            'fa',
-                            feature ? feature.faIcon : ''
-                        )}
-                    ></i>
-                </Avatar>
+                feature && (
+                    <Avatar>
+                        <i
+                            className={classNames(
+                                props.selectProps.classes.icon,
+                                'fa',
+                                feature.faIcon
+                            )}
+                        ></i>
+                    </Avatar>
+                )
             }
             onDelete={props.removeProps.onClick}
         />
