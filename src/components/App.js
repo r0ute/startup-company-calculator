@@ -12,11 +12,14 @@ import {
     withStyles,
 } from '@material-ui/core';
 import { MoneyOff as AppIcon } from '@material-ui/icons';
-import SelectFeature from './SelectFeature';
+import Select from './Select';
 import RequirementsHoc from './RequirementsHoc';
 import RequirementsUtils from '../utils/RequirementsUtils';
 import CostsUtils from '../utils/CostsUtils';
 import Configuration from '../models/Configuration';
+import Enums from '../models/Enums';
+import { Features } from '../models/Features';
+import { RackDevices } from '../models/RackDevices';
 
 const DrawerItems = {
     Features: {
@@ -42,7 +45,10 @@ class App extends Component {
         };
     }
 
-    handleFeatureChange = features => {
+    handleFeatureChange = items => {
+        const features = Features.filter(feature =>
+            items.includes(feature.name)
+        );
         const requirements = RequirementsUtils.getFromFeatures(features);
         const optimalCosts = CostsUtils.getOptimalCosts(requirements);
 
@@ -138,10 +144,28 @@ class App extends Component {
                 </Drawer>
 
                 <main className={classes.main}>
-                    <SelectFeature
-                        selectedFeatures={selectedFeatures}
+                    <Select
+                        allItems={Features.filter(feature =>
+                            [
+                                Enums.FeatureCategories.Users,
+                                Enums.FeatureCategories.Enhancement,
+                            ].includes(feature.categoryName)
+                        )}
+                        selectedItems={selectedFeatures}
+                        placeholder="Add Feature..."
                         onChange={this.handleFeatureChange}
                     />
+
+                    {includeHosting && (
+                        <Select
+                            allItems={Object.keys(RackDevices).map(
+                                key => RackDevices[key]
+                            )}
+                            selectedItems={[]}
+                            placeholder="Add Rack Device..."
+                            onChange={() => {}}
+                        />
+                    )}
 
                     <RequirementsHoc
                         requirements={requirements}

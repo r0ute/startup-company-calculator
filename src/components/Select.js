@@ -9,12 +9,11 @@ import {
     Typography,
     withStyles,
 } from '@material-ui/core';
-import Select from 'react-select';
+import ReactSelect from 'react-select';
 import { Features } from '../models/Features';
 import PropTypes from 'prop-types';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import classNames from 'classnames';
-import Enums from '../models/Enums';
 
 const NoOptionsMessage = props => {
     return (
@@ -51,6 +50,8 @@ const Control = props => {
 };
 
 const Option = props => {
+    const feature = Features.find(feature => feature.name === props.value);
+
     return (
         <MenuItem
             buttonRef={props.innerRef}
@@ -62,12 +63,7 @@ const Option = props => {
             {...props.innerProps}
         >
             <ListItemIcon>
-                <i
-                    className={`fa ${
-                        Features.find(feature => feature.name === props.value)
-                            .faIcon
-                    }`}
-                ></i>
+                <i className={`fa ${feature ? feature.faIcon : ''}`}></i>
             </ListItemIcon>
             {props.children}
         </MenuItem>
@@ -106,6 +102,8 @@ const ValueContainer = props => {
 };
 
 const MultiValue = props => {
+    const feature = Features.find(feature => feature.name === props.children);
+
     return (
         <Chip
             tabIndex={-1}
@@ -119,9 +117,7 @@ const MultiValue = props => {
                         className={classNames(
                             props.selectProps.classes.icon,
                             'fa',
-                            Features.find(
-                                feature => feature.name === props.children
-                            ).faIcon
+                            feature ? feature.faIcon : ''
                         )}
                     ></i>
                 </Avatar>
@@ -154,67 +150,64 @@ const components = {
     ValueContainer,
 };
 
-class SelectFeature extends Component {
-    allFeatures = Features.filter(feature =>
-        [
-            Enums.FeatureCategories.Users,
-            Enums.FeatureCategories.Enhancement,
-        ].includes(feature.categoryName)
-    )
-        .map(feature => ({
-            value: feature.name,
-            label: feature.name,
-        }))
-        .sort((left, right) => left.label.localeCompare(right.label));
-
-    handleFeatureChange = option => {
+class Select extends Component {
+    handleChange = option => {
         const { onChange } = this.props;
 
-        const featureIds = !option ? [] : option.map(opt => opt.value);
+        const ids = !option ? [] : option.map(opt => opt.value);
 
-        onChange(Features.filter(feature => featureIds.includes(feature.name)));
+        onChange(ids);
     };
 
     render() {
-        const { classes, selectedFeatures } = this.props;
+        const { classes, selectedItems, placeholder, allItems } = this.props;
 
         return (
-            <Select
+            <ReactSelect
                 classes={classes}
+                className={classes.root}
                 components={components}
                 textFieldProps={{
                     InputLabelProps: {
                         shrink: true,
                     },
                 }}
-                options={this.allFeatures.filter(
-                    feature => !selectedFeatures.includes(feature)
-                )}
-                value={selectedFeatures
-                    .map(feature => ({
-                        value: feature.name,
-                        label: feature.name,
+                options={allItems
+                    .filter(item => !selectedItems.includes(item))
+                    .map(item => ({
+                        value: item.name,
+                        label: item.name,
                     }))
                     .sort((left, right) =>
                         left.label.localeCompare(right.label)
                     )}
-                onChange={this.handleFeatureChange}
-                placeholder="Add Feature..."
+                value={selectedItems
+                    .map(item => ({
+                        value: item.name,
+                        label: item.name,
+                    }))
+                    .sort((left, right) =>
+                        left.label.localeCompare(right.label)
+                    )}
+                onChange={this.handleChange}
+                placeholder={placeholder}
                 isMulti
             />
         );
     }
 }
 
-SelectFeature.propTypes = {
-    selectedFeatures: PropTypes.array.isRequired,
+Select.propTypes = {
+    allItems: PropTypes.array.isRequired,
+    selectedItems: PropTypes.array.isRequired,
+    placeholder: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
 };
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        height: 250,
+        marginBottom: theme.spacing.unit * 2,
     },
     input: {
         display: 'flex',
@@ -265,4 +258,4 @@ const styles = theme => ({
     },
 });
 
-export default withStyles(styles)(SelectFeature);
+export default withStyles(styles)(Select);
