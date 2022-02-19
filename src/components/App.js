@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
 import {
     AppBar,
@@ -55,6 +56,12 @@ class App extends Component {
         );
 
         this._updateRequirements(features);
+
+        ReactGA.event({
+            category: 'App',
+            action: 'Changed Feature',
+            label: features.map(feat => feat.name).join(),
+        });
     };
 
     handleRackDeviceChange = items => {
@@ -63,12 +70,25 @@ class App extends Component {
             .filter(device => items.includes(device.name));
 
         this._updateRequirements(undefined, devices);
+
+        ReactGA.event({
+            category: 'App',
+            action: 'Changed Rack Device',
+            label: devices.map(dev => dev.name).join(),
+        });
     };
 
     handleCostChange = (key, value) => {
         this.setState(prevState => ({
             costs: CostsUtils.updateCosts(prevState.optimalCosts, key, value),
         }));
+
+        ReactGA.event({
+            category: 'App',
+            action: 'Changed Cost',
+            label: key,
+            value: value,
+        });
     };
 
     render() {
