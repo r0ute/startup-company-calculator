@@ -18,7 +18,7 @@
         "@material-ui/icons": "^3.0.2",
         "classnames": "latest",
         "compute-gcd": "^1.2.1",
-        "moment": "^2.29.1",
+        "moment": "^2.29.2",
         "moment-duration-format": "^2.3.2",
         "prop-types": "^15.8.1",
         "react": "^16.14.0",
